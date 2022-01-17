@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content%}
+<div>
+  <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
+    {% csrf_token %}
+    <button class="btn" Type="submit"> ADD</button>
+  </form>
+</div>
+
+{% endblock %}
