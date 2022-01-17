@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-SKILL_TYPE = (
+TYPES = (
     ('L', 'Language'),
     ('F', 'Framework'),
     ('D', 'Database'),
 )
 
-DEGREE_TYPE =  (
+DEGREES =  (
     ('BA', 'Bachelors of Arts'),
     ('BS', 'Bachelors of Science'),
     ('MA', 'Masters of Arts'),
@@ -32,12 +32,18 @@ class Contact(models.Model):
     job_title = models.CharField(max_length= 200)
 
 class Skill(models.Model):
-    skill = models.CharField(max_length= 200)
+    name = models.CharField(max_length= 200)
     type = models.CharField(
         max_length = 1,
-        choices = SKILL_TYPE,
-        default = SKILL_TYPE[0][0]) 
-    description = models.TextField(max_length= 500)     
+        choices = TYPES,
+        default = TYPES[0][0]) 
+    description = models.TextField(max_length= 500)
+
+    def __str__(self):
+        return f"{self.get_type_display()}"    
+
+    def get_absolute_url(self):
+        return reverse('skills_index')
 
 class Experience(models.Model):
     workplace = models.CharField(max_length=200)
@@ -52,7 +58,7 @@ class Education(models.Model):
     location = models.CharField(max_length=200)
     degree = models.BooleanField(
         default= False,
-        choices=DEGREE_TYPE
+        choices=DEGREES
     )
     degree_description = models.CharField(max_length= 300)        
 
