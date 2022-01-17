@@ -4,4 +4,9 @@ from . import views
 urlpatterns = [
   path('', views.home, name='home'),
   path('accounts/signup/', views.signup, name='signup'),
+  # Skills 
+  path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
+  
+
+
 ]
