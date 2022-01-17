@@ -28,6 +28,12 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+def skills_index(request):
+  # Filter skills once user model has been connected to Skill model
+  # skill = Skill.objects.filter(user=request.user)
+  skills = Skill.objects.all()
+  return render(request, 'skills/index.html', {'skills': skills})
+
 class SkillCreate(CreateView):
   model = Skill
   fields = '__all__'
