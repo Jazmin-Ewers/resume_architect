@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .forms import ResumeForm
 
 from main_app.models import *
 
@@ -34,6 +35,7 @@ def skills_index(request):
   skills = Skill.objects.all()
   return render(request, 'skills/index.html', {'skills': skills})
 
+
 class SkillCreate(CreateView):
   model = Skill
   fields = '__all__'
@@ -42,3 +44,25 @@ class SkillCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
   
+class ResumeCreate(CreateView):
+  model = Resume
+  fields = '__all__'
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+def resumes_detail(request, resume_id):
+  resume = Resume.objects.all()
+  # skills = Resume.objects.get()
+  resume_form = ResumeForm()
+  return render(request, 'resumes/detail.html',  {
+    'resume': resume,
+    'resume_form': resume_form,
+    # 'skills': skills
+    })
+
+def assoc_skill(request, resume_id, skill_id):
+  resume=Resume.objects.get(id=resume_id)
+  resume.skills.add(skill_id)
+  return redirect('resumes_detail', resume_id=resume_id)
