@@ -6,7 +6,7 @@ urlpatterns = [
   path('accounts/signup/', views.signup, name='signup'),
   # Skills 
   path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
-  
+  path('skills/', views.skills_index, name='skills_index')
 
 
 ]
