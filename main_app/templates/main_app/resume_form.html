@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<form action="" method="POST">
+<form action=""{% url 'assoc_skill' resume.id skill.id %}"" method="POST">
     {% csrf_token %}
     <table>
-        {{form.as_table}}
+      {{form.as_table}}
     </table>
 
 </form>
