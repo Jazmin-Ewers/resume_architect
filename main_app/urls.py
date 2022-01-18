@@ -19,5 +19,7 @@ urlpatterns = [
 
   # Contact Paths
   path('contacts/', views.contacts_index, name='contacts_index'),
-  path('contacts/create/', views.contacts_create, name='contacts_create'),
+  # path('contacts/create/', views.contacts_create, name='contacts_create'),
+  path('contacts/create/', views.ContactCreate.as_view(), name='contacts_create'),
+  # path('contacts/<int:pk>/update/', views.ContactUpdate.as_view(), name='contacts_update'),
 ]
