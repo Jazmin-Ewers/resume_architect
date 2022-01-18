@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ResumeForm
+from .forms import ResumeForm, EducationForm
 
 from main_app.models import *
 
@@ -66,3 +66,13 @@ def assoc_skill(request, resume_id, skill_id):
   resume=Resume.objects.get(id=resume_id)
   resume.skills.add(skill_id)
   return redirect('resumes_detail', resume_id=resume_id)
+
+def educations_index(request):
+  educations = Education.objects.all()
+  return render(request, 'educations/index.html', {'educations': educations}) 
+
+class EducationCreate(CreateView):
+  model= Education
+  fields= '__all__'
+  
+

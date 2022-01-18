@@ -11,5 +11,8 @@ urlpatterns = [
   path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),
   path('resumes/<int:resume_id>/assoc_skill/<int:skill_id>/', views.assoc_skill, name='assoc_skill'),
+  #Education
+  path('educations/', views.educations_index, name='educations_index'),
+  path('educations/create/', views.EducationCreate.as_view(), name='educations_create'),
 
 ]
