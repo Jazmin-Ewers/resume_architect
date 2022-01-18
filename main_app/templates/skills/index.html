@@ -10,7 +10,7 @@
       <span class="card-title">{{ skill.name }}</span>
       <p>Type: {{ skill.get_type_display }}</p>
       <p>Description: {{ skill.description }}</p>
-      <a href="#">Edit</a>
+      <a href="{% url 'skills_update' skill.id %}">Edit</a>
       <a href="#">Delete</a>
     </div>
   </div>

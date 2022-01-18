@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ResumeForm, EducationForm
+from .forms import ResumeForm, EducationForm, ContactForm
 
 from main_app.models import *
 
@@ -43,7 +43,11 @@ class SkillCreate(CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
-  
+
+class SkillUpdate(UpdateView):
+  model = Skill
+  fields = '__all__'
+
 class ResumeCreate(CreateView):
   model = Resume
   fields = '__all__'
@@ -75,4 +79,20 @@ class EducationCreate(CreateView):
   model= Education
   fields= '__all__'
   
+def contacts_index(request):
+  contacts = Contact.objects.all()
+  contacts_form = ContactForm()
+  return render(request, 'contacts/index.html', {
+    'contacts': contacts,
+    'contacts_form': contacts_form
+  })
+
+def contacts_create(request):
+  if request.method == 'POST':
+    form = ContactForm(request.POST)
+    # Contact.objects.create(form)
+    if form.is_valid():
+      new_contact = form.save(commit=False)
+      new_contact.save()
+    return redirect('contacts_index')
 
