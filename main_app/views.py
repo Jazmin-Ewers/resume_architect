@@ -100,3 +100,6 @@ class ContactCreate(CreateView):
   model= Contact
   fields= '__all__'
 
+class ContactUpdate(UpdateView):
+  model = Contact
+  fields = '__all__'
