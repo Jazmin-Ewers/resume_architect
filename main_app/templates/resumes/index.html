@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block content %}
+<br>
+<br>
+<br>
+<h1> Resumes </h1>
+
+{% for resume in resumes %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ resume.first_name }} {{ resume.last_name }}</span>
+      <p>User: {{ resume.user }}</p>
+      <a href="">Edit</a>
+      <a href="">Delete</a>
+      {% endfor %}
+    </div>
+  </div>
+
+ 
+  <a href="">Add Resume</a>
+{% endblock %}

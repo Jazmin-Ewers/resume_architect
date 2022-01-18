@@ -48,13 +48,17 @@ class SkillUpdate(UpdateView):
   model = Skill
   fields = '__all__'
 
-class ResumeCreate(CreateView):
-  model = Resume
-  fields = '__all__'
+# class ResumeCreate(CreateView):
+#   model = Resume
+#   fields = '__all__'
 
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+#   def form_valid(self, form):
+#     form.instance.user = self.request.user
+#     return super().form_valid(form)
+
+def resumes_index(request):
+  resumes = Resume.objects.all()
+  return render(request, 'resumes/index.html', {'resumes': resumes})
 
 def resumes_detail(request, resume_id):
   resume = Resume.objects.all()
