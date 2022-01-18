@@ -8,6 +8,7 @@ urlpatterns = [
   path('skills/create/', views.SkillCreate.as_view(), name='skills_create'),
   path('skills/', views.skills_index, name='skills_index'),
   path('skills/<int:pk>/update/', views.SkillUpdate.as_view(), name='skills_update'),
+  # path('skills/<int:pk>/delete/', views.SkillUpdate.as_view(), name='skills_update'),
   #Resume paths
   path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),
@@ -18,5 +19,5 @@ urlpatterns = [
 
   # Contact Paths
   path('contacts/', views.contacts_index, name='contacts_index'),
-
+  path('contacts/create/', views.contacts_create, name='contacts_create'),
 ]

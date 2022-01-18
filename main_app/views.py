@@ -86,3 +86,13 @@ def contacts_index(request):
     'contacts': contacts,
     'contacts_form': contacts_form
   })
+
+def contacts_create(request):
+  if request.method == 'POST':
+    form = ContactForm(request.POST)
+    # Contact.objects.create(form)
+    if form.is_valid():
+      new_contact = form.save(commit=False)
+      new_contact.save()
+    return redirect('contacts_index')
+

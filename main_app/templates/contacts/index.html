@@ -18,12 +18,13 @@
       <a href="#">Edit</a>
       <a href="#">Delete</a>
     </div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ contacts_form.as_p }}
-        <input type="submit" class="btn" value="Add Contact">
-      </form>
   </div>
   {% endfor %}
+
+  <form action="{% url 'contacts_create' %}" method="POST">
+    {% csrf_token %}
+    {{ contacts_form.as_p }}
+    <input type="submit" class="btn" value="Add Contact">
+  </form>
   <a href="">Add Contact</a>
 {% endblock %}
