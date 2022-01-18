@@ -31,6 +31,9 @@ class Contact(models.Model):
     location = models.CharField(max_length= 200)
     job_title = models.CharField(max_length= 200)
 
+    def get_absolute_url(self):
+        return reverse('contacts_index')
+
 class Skill(models.Model):
     name = models.CharField(max_length= 200)
     type = models.CharField(

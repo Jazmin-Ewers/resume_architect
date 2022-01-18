@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ResumeForm, EducationForm, ContactForm
@@ -87,12 +87,23 @@ def contacts_index(request):
     'contacts_form': contacts_form
   })
 
-def contacts_create(request):
-  if request.method == 'POST':
-    form = ContactForm(request.POST)
-    # Contact.objects.create(form)
-    if form.is_valid():
-      new_contact = form.save(commit=False)
-      new_contact.save()
-    return redirect('contacts_index')
+# def contacts_create(request):
+#   if request.method == 'POST':
+#     form = ContactForm(request.POST)
+#     # Contact.objects.create(form)
+#     if form.is_valid():
+#       new_contact = form.save(commit=False)
+#       new_contact.save()
+#     return redirect('contacts_index')
 
+class ContactCreate(CreateView):
+  model= Contact
+  fields= '__all__'
+
+class ContactUpdate(UpdateView):
+  model = Contact
+  fields = '__all__'
+
+class ContactDelete(DeleteView):
+  model = Contact
+  success_url = '/contacts/'
