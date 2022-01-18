@@ -40,7 +40,7 @@ class Skill(models.Model):
     description = models.TextField(max_length= 500)
 
     def __str__(self):
-        return f"{self.get_type_display()}"    
+        return f"{self.get_type_display()}, {self.name} {self.description}"    
 
     def get_absolute_url(self):
         return reverse('skills_index')
