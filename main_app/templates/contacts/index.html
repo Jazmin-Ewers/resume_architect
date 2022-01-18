@@ -16,7 +16,7 @@
       <p>Location: {{ contact.location }}</p>
       <p>Job Title: {{ contact.job_title }}</p>
       <a href="{% url 'contacts_update' contact.id %}">Edit</a>
-      <a href="#">Delete</a>
+      <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
     </div>
   </div>
   {% endfor %}
