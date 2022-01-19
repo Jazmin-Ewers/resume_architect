@@ -175,3 +175,7 @@ def experiences_index(request):
     'experiences': experiences,
     'experiences_form': experiences_form
   })
+
+class ExperienceCreate(CreateView):
+  model = Experience
+  fields = '__all__'
