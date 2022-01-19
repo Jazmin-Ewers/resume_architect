@@ -48,13 +48,14 @@ class SkillUpdate(UpdateView):
   model = Skill
   fields = '__all__'
 
-# class ResumeCreate(CreateView):
-#   model = Resume
-#   fields = '__all__'
+def resume_create(request):
+  contacts = Contact.objects.all()
+  skills = Skill.objects.all()
+  projects = Projects.objects.all()
+  experiences = Experience.objects.all()
+  educations = Education.objects.all()
 
-#   def form_valid(self, form):
-#     form.instance.user = self.request.user
-#     return super().form_valid(form)
+
 
 def resumes_index(request):
   resumes = Resume.objects.all()

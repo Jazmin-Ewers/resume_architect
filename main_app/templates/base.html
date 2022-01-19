@@ -40,7 +40,8 @@
               <li><a class="dropdown-item" href="{% url 'educations_index' %}">All Education</a></li>
               <li><a class="dropdown-item" href="{% url 'contacts_index' %}">Contact</a></li>
               <li><a class="dropdown-item" href="{%url 'resumes_index' %}"> Resumes</a></li>
-            {% else %}
+              <li><a class="dropdown-item" href="{%url 'resumes_create' %}"> Create Resume</a></li>
+              {% else %}
               <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
             {% endif %}
