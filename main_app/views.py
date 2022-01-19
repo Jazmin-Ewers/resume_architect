@@ -82,6 +82,14 @@ def resumes_detail(request, resume_id):
     'resume_form': resume_form,
   })
 
+def resumes_print(request, resume_id):
+  resume = Resume.objects.get(id=resume_id)
+  skills = resume.skills.all()
+  return render(request, 'resumes/print.html', {
+    'resume': resume,
+    'skills': skills
+    })  
+
 # def cats_detail(request, cat_id):
 #       cat = Cat.objects.get(id=cat_id)
 #       if cat.user == request.user:
