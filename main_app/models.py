@@ -55,6 +55,12 @@ class Experience(models.Model):
     end_date = models.DateField('End Date')
     description = models.TextField(max_length = 2000)
 
+    def __str__(self):
+        return self.workplace
+    
+    def get_absolute_url(self):
+        return reverse('experiences_index')
+
 class Education(models.Model):
     institution = models.CharField(max_length=200)
     graduation = models.DateField('Graduation Date')         

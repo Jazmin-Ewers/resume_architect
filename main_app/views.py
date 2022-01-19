@@ -1,8 +1,9 @@
+from ast import Delete
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import EducationForm, ContactForm, ResumeForm, SkillForm
+from .forms import EducationForm, ContactForm, ResumeForm, SkillForm, ExperienceForm
 
 from main_app.models import *
 
@@ -166,3 +167,24 @@ class ContactUpdate(UpdateView):
 class ContactDelete(DeleteView):
   model = Contact
   success_url = '/contacts/'
+
+
+def experiences_index(request):
+  experiences = Experience.objects.all()
+  experiences_form = ExperienceForm()
+  return render(request, 'experiences/index.html', {
+    'experiences': experiences,
+    'experiences_form': experiences_form
+  })
+
+class ExperienceCreate(CreateView):
+  model = Experience
+  fields = '__all__'
+
+class ExperienceUpdate(UpdateView):
+  model = Experience
+  fields = '__all__'
+
+class ExperienceDelete(DeleteView):
+  model = Experience
+  success_url = '/experiences/'

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Education, Contact, Skill, Resume
+from .models import Education, Contact, Skill, Resume, Experience
 
 class EducationForm(ModelForm):
   class Meta:
@@ -19,4 +19,9 @@ class ResumeForm(ModelForm):
 class SkillForm(ModelForm):
   class Meta:
     model = Skill
+    fields = '__all__'
+
+class ExperienceForm(ModelForm):
+  class Meta:
+    model = Experience
     fields = '__all__'
