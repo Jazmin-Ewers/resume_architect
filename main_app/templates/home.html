@@ -23,11 +23,16 @@
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
+              {% if user.is_authenticated %}
                 <li class="sidebar-brand"><a href="#page-top">Resume Architect</a></li>
+                <li class="sidebar-nav-item"><a href="{% url 'resumes_index' %}">Home</a></li>
+                <li class="sidebar-nav-item"><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
                 <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
                 <li class="sidebar-nav-item"><a href="#about">About</a></li>
                 <li class="sidebar-nav-item"><a href="{% url 'signup' %}">Sign Up</a></li>
                 <li class="sidebar-nav-item"><a href="{% url 'login' %}">Log In</a></li>
+              {% endif %}
             </ul>
         </nav>
         <!-- Header-->
