@@ -12,6 +12,11 @@ class ContactForm(ModelForm):
     fields = '__all__'
 
 class ResumeForm(ModelForm):
-    class Meta:
-      model = Resume 
-      fields = '__all__'  
+  class Meta:
+    model = Resume 
+    fields = '__all__'  
+
+class SkillForm(ModelForm):
+  class Meta:
+    model = Skill
+    fields = '__all__'

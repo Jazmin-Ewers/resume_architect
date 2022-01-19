@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import EducationForm, ContactForm, ResumeForm
+from .forms import EducationForm, ContactForm, ResumeForm, SkillForm
 
 from main_app.models import *
 
@@ -33,8 +33,11 @@ def skills_index(request):
   # Filter skills once user model has been connected to Skill model
   # skill = Skill.objects.filter(user=request.user)
   skills = Skill.objects.all()
-  return render(request, 'skills/index.html', {'skills': skills})
-
+  skills_form = SkillForm()
+  return render(request, 'skills/index.html', {
+    'skills': skills,
+    'skills_form': skills_form
+    })
 
 class SkillCreate(CreateView):
   model = Skill
@@ -47,6 +50,10 @@ class SkillCreate(CreateView):
 class SkillUpdate(UpdateView):
   model = Skill
   fields = '__all__'
+
+class  SkillDelete(DeleteView):
+  model = Skill
+  success_url = '/skills/'
 
 class ResumeCreate(CreateView):
   model = Resume
@@ -112,11 +119,24 @@ def assoc_skill(request, resume_id, skill_id):
 
 def educations_index(request):
   educations = Education.objects.all()
-  return render(request, 'educations/index.html', {'educations': educations}) 
+  educations_form = EducationForm()
+  return render(request, 'educations/index.html', {
+    'educations': educations,
+    'educations_form': educations_form
+    }) 
 
 class EducationCreate(CreateView):
   model= Education
   fields= '__all__'
+
+class EducationUpdate(UpdateView):
+  model = Education
+  fields = '__all__'
+
+class EducationDelete(DeleteView):
+  model = Education
+  success_url = '/educations/'
+
   
 def contacts_index(request):
   contacts = Contact.objects.all()
