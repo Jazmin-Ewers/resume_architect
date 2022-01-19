@@ -1,8 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<br>
-<br>
-<br>
+
 <h1> Resumes </h1>
 
 
@@ -19,5 +17,5 @@
 </a>
 {% endfor %}
 
-  <a href="{% url 'resumes_create' %}">Add Resume</a>
+  <a href="{% url 'resumes_create' %}" class="btn btn-primary">Add Resume</a>
 {% endblock %}

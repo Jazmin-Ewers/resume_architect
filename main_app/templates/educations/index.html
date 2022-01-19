@@ -1,8 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
-<br>
-<br>
-<br>
+
 <h1> Education </h1>
 
 {% for education in educations %}
@@ -18,7 +16,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         {{ education_form.as_p }}
-        <input type="submit" class="btn" value="Add Education">
+        <input type="submit" class="btn btn-primary" value="Add Education">
       </form>
   </div>
   {% endfor %}

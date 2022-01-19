@@ -1,6 +1,34 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <title>Resume Architect</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <nav class="home-nav">
+        <ul class="home-nav-list">
+          <li><a class="home-nav-link" href="#about">About</a></li>
+          <li><a class="home-nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a class="home-nav-link" href="{% url 'login' %}">Log In</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <h1 class="main-title">
+        Resume Architect
+      </h1>
+      <h3 class="main-subtitle">Your Best Resume Ever.</h3>
+      <a class="btn" href="{% url 'signup' %}">Sign Up Now</a>
+    </main>
 
-<h1>Home Page</h1>
+  </div>
 
-{% endblock %}
+  
+</body>
+</html>

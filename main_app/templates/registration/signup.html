@@ -1,17 +1,40 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <title>Resume Architect</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <nav class="home-nav">
+        <ul class="home-nav-list">
+          <li><a class="home-nav-link" href="#about">About</a></li>
+          <li><a class="home-nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a class="home-nav-link" href="{% url 'login' %}">Log In</a></li>
+        </ul>
+      </nav>
+    </header>
 
-{% block content %}
+    <main class="main">
+      <h1 class="heading-primary">Sign Up</h1>
 
-<h1>Sign Up</h1>
+      {% if error_message %}
+        <p class="red-text">{{ error_message }}</p>
+      {% endif %}
+      
+      <form class="form form--signup" method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn" value="Sign Up">
+      </form>
+    </main>
 
-{% if error_message %}
-  <p class="red-text">{{ error_message }}</p>
-{% endif %}
+  </div>
 
-<form method="post" action="{% url 'signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="signup">
-</form>
-
-{% endblock %}
+</body>
+</html>
