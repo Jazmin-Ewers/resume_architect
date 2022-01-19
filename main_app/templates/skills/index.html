@@ -4,7 +4,7 @@
 <!-- Add Contact Form -->
 <div class="card mt-4 mb-4">
     <div class="card-body">
-      <form action="" method="POST">
+      <form action="{% url 'skills_create' %}" method="POST">
         {% csrf_token %}
         {{ skills_form.as_p }}
         <input type="submit" class="btn btn-secondary" value="Add Skill">
@@ -34,7 +34,7 @@
             <td>{{ skill.get_type_display }}</td>
             <td>{{ skill.description }}</td>
             <td><a href="{% url 'skills_update' skill.id %}" class="link-primary">Edit</a></td>
-            <td><a href="#" class="link-danger">Delete</a></td>
+            <td><a href="{% url 'skills_delete' skill.id %}" class="link-danger">Delete</a></td>
           </tr>
         {% endfor %}
       </tbody>

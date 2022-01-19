@@ -59,11 +59,18 @@ class Education(models.Model):
     institution = models.CharField(max_length=200)
     graduation = models.DateField('Graduation Date')         
     location = models.CharField(max_length=200)
-    degree = models.BooleanField(
-        default= False,
-        choices=DEGREES
+    degree = models.CharField(
+        choices=DEGREES,
+        default=DEGREES[6][0],
+        max_length=2
     )
-    degree_description = models.CharField(max_length= 300)        
+    degree_description = models.CharField(max_length= 300) 
+
+    def __str__(self):
+        return self.get_degree_display()
+
+    def get_absolute_url(self):
+        return reverse('educations_index')      
 
 class Projects(models.Model):
     project_name = models.CharField(max_length= 200)
