@@ -71,15 +71,15 @@ def resumes_detail(request, resume_id):
   experiences = Experience.objects.all()
   educations = Education.objects.all()
   resume_form = ResumeForm()
+  skills_resume_doesnt_have = Skill.objects.exclude(id__in=resume.skills.all().values_list('id'))
   return render(request, 'resumes/detail.html',  {
     'resume': resume,
-    'skills': skills,
+    'skills': skills_resume_doesnt_have,
     'contacts': contacts,
     'projects': projects,
     'experiences': experiences,
     'educations': educations,
     'resume_form': resume_form,
-    
   })
 
 # def cats_detail(request, cat_id):

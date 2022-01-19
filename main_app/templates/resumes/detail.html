@@ -1,25 +1,55 @@
 {% extends 'base.html' %}
 {% block content%}
 <div>
-  <form action="" method="POST">
-    {% csrf_token %}
 
-    
+
   <div class="card">
     <div class="card-content">
       {% for skill in skills %}
       <span class="card-title">{{ skill.name }}</span>
       <p>Type: {{ skill.type }}</p>
-      <a href="">Edit</a>
-      <a href="">Delete</a>
       <input type="checkbox" name="skills" value="{{ skill.name }}">
       <label for=""></label><br>
-      <button class="btn" Type="submit"> ADD</button>
-      {% endfor %}
+    </div>
+    <div class="card-action">
+      <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
+        {% csrf_token %}
+        <button class="btn" Type="submit"> ADD</button>
+      </form>
     </div>
   </div>
-    
-  </form>
+  {% endfor %}
 </div>
+
+<div class="col s6">
+  <h3>{{ resume.name }}</h3>
+  {% if resume.skills.count %}
+    {% for skill in resume.skills.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            {{ skill.name }}
+            {{ skill.get_type_display }}
+          </span>
+        </div>
+        <div class="card-action">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn">Remove</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h5>No Skills</h5>
+  {% endif %}
+</div>
+
+
+
+
+
+
+
 
 {% endblock %}
