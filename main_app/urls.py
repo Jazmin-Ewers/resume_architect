@@ -33,4 +33,6 @@ urlpatterns = [
   # Experiences Paths
   path('experiences/', views.experiences_index, name='experiences_index'),
   path('experiences/create/', views.ExperienceCreate.as_view(), name='experiences_create'),
+  path('experiences/<int:pk>/update/', views.ExperienceUpdate.as_view(), name='experiences_update'),
+  path('experiences/<int:pk>/delete/', views.ExperienceDelete.as_view(), name='experiences_delete'),
 ]

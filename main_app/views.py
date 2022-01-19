@@ -1,3 +1,4 @@
+from ast import Delete
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
@@ -179,3 +180,11 @@ def experiences_index(request):
 class ExperienceCreate(CreateView):
   model = Experience
   fields = '__all__'
+
+class ExperienceUpdate(UpdateView):
+  model = Experience
+  fields = '__all__'
+
+class ExperienceDelete(DeleteView):
+  model = Experience
+  success_url = '/experiences/'
