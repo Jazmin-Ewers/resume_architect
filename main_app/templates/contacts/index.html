@@ -1,29 +1,47 @@
 {% extends 'base.html'%}
 {% block content %}
-<br>
-<br>
-<br>
-<h1> Contact Information </h1>
 
-{% for contact in contacts %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ contact.first_name }} {{ contact.last_name }}</span>
-      <p>Email: {{ contact.email }}</p>
-      <p>LinkedIn: {{ contact.linkedin }}</p>
-      <p>GitHub: {{ contact.github }}</p>
-      <p>Portfolio: {{ contact.portfolio }}</p>
-      <p>Location: {{ contact.location }}</p>
-      <p>Job Title: {{ contact.job_title }}</p>
-      <a href="{% url 'contacts_update' contact.id %}">Edit</a>
-      <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-4 mb-4"> Contact Information </h2>
     </div>
-  </div>
-  {% endfor %}
 
-  <form action="{% url 'contacts_create' %}" method="POST">
-    {% csrf_token %}
-    {{ contacts_form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Add Contact">
-  </form>
+    <!-- Contact Card -->
+    {% for contact in contacts %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card my-3">
+          <div class="card-body">
+            <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
+            <p><b>Email:</b> {{ contact.email }}</p>
+            <p><b>LinkedIn: </b>{{ contact.linkedin }}</p>
+            <p><b>GitHub:</b> {{ contact.github }}</p>
+            <p><b>Portfolio:</b> {{ contact.portfolio }}</p>
+            <p><b>Location:</b>{ { contact.location }}</p>
+            <p><b>Job Title:</b> {{ contact.job_title }}</p>
+            <a href="{% url 'contacts_update' contact.id %}">Edit</a>
+            <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Add Contact Form -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card my-3">        
+        <div class="card-body">
+          <form action="{% url 'contacts_create' %}" method="POST">
+            {% csrf_token %}
+            {{ contacts_form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Add Contact">
+          </form>
+        </div>
+      </div>
+    </div>  
+
+</div>
+
+
+
 {% endblock %}
+
