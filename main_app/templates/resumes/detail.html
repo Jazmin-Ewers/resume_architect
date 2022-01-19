@@ -14,7 +14,7 @@
     <div class="card-action">
       <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
         {% csrf_token %}
-        <button class="btn" Type="submit"> ADD</button>
+        <button class="btn btn-primary" Type="submit"> ADD</button>
       </form>
     </div>
   </div>
@@ -35,7 +35,7 @@
         <div class="card-action">
           <form action="" method="POST">
             {% csrf_token %}
-            <button type="submit" class="btn">Remove</button>
+            <button type="submit" class="btn btn-primary">Remove</button>
           </form>
         </div>
       </div>

@@ -24,7 +24,6 @@
   <form action="{% url 'contacts_create' %}" method="POST">
     {% csrf_token %}
     {{ contacts_form.as_p }}
-    <input type="submit" class="btn" value="Add Contact">
+    <input type="submit" class="btn btn-primary" value="Add Contact">
   </form>
-  <a href="">Add Contact</a>
 {% endblock %}
