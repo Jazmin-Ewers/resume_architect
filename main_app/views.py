@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import EducationForm, ContactForm
+from .forms import EducationForm, ContactForm, ResumeForm
 
 from main_app.models import *
 
@@ -63,15 +63,39 @@ def resumes_index(request):
   resumes = Resume.objects.all()
   return render(request, 'resumes/index.html', {'resumes': resumes})
 
-# def resumes_detail(request, resume_id):
-#   resume = Resume.objects.all()
-#   # skills = Resume.objects.get()
-#   resume_form = ResumeForm()
-#   return render(request, 'resumes/detail.html',  {
-#     'resume': resume,
-#     'resume_form': resume_form,
-#     # 'skills': skills
+def resumes_detail(request, resume_id):
+  resume = Resume.objects.get(id=resume_id)
+  skills = Skill.objects.all()
+  contacts = Contact.objects.all()
+  projects = Projects.objects.all()
+  experiences = Experience.objects.all()
+  educations = Education.objects.all()
+  resume_form = ResumeForm()
+  return render(request, 'resumes/detail.html',  {
+    'resume': resume,
+    'skills': skills,
+    'contacts': contacts,
+    'projects': projects,
+    'experiences': experiences,
+    'educations': educations,
+    'resume_form': resume_form,
+    
+  })
+
+# def cats_detail(request, cat_id):
+#       cat = Cat.objects.get(id=cat_id)
+#       if cat.user == request.user:
+#     # instantiate FeedingForm to be rendered in the detail.html template
+#     feeding_form = FeedingForm()
+#     # find all toys not associated with this cat
+#     toys_cat_doesnt_have = Toy.objects.exclude(id__in=cat.toys.all().values_list('id'))
+#     return render(request, 'cats/detail.html', {
+#       'cat': cat,
+#       'feeding_form': feeding_form,
+#       'toys': toys_cat_doesnt_have
 #     })
+#   else:
+#     return redirect('cats_index')
 
 def assoc_skill(request, resume_id, skill_id):
   resume=Resume.objects.get(id=resume_id)
