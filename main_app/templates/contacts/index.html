@@ -17,7 +17,7 @@
             <p><b>LinkedIn: </b>{{ contact.linkedin }}</p>
             <p><b>GitHub:</b> {{ contact.github }}</p>
             <p><b>Portfolio:</b> {{ contact.portfolio }}</p>
-            <p><b>Location:</b>{ { contact.location }}</p>
+            <p><b>Location:</b> {{ contact.location }}</p>
             <p><b>Job Title:</b> {{ contact.job_title }}</p>
             <a href="{% url 'contacts_update' contact.id %}">Edit</a>
             <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
