@@ -1,29 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Skills</h1>
+<!-- Add Contact Form -->
+<div class="card mt-4 mb-4">
+    <div class="card-body">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{ skills_form.as_p }}
+        <input type="submit" class="btn btn-secondary" value="Add Skill">
+      </form>
+    </div>
+</div>  
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Skill</th>
-      <th>Type</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for skill in skills %}
-      <tr>
-        <td>{{ skill.name }}</td>
-        <td>{{ skill.get_type_display }}</td>
-        <td>{{ skill.description }}</td>
-        <td><a href="{% url 'skills_update' skill.id %}">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+
+
+
+<div class="card mb-4">
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Skill</th>
+          <th>Type</th>
+          <th>Notes</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for skill in skills %}
+          <tr>
+            <td>{{ skill.name }}</td>
+            <td>{{ skill.get_type_display }}</td>
+            <td>{{ skill.description }}</td>
+            <td><a href="{% url 'skills_update' skill.id %}" class="link-primary">Edit</a></td>
+            <td><a href="#" class="link-danger">Delete</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
 {% endblock %}
