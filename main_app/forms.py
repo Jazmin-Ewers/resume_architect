@@ -9,4 +9,9 @@ class EducationForm(ModelForm):
 class ContactForm(ModelForm):
   class Meta:
     model = Contact 
-    fields = '__all__' 
+    fields = '__all__'
+
+class ResumeForm(ModelForm):
+    class Meta:
+      model = Resume 
+      fields = '__all__'  
