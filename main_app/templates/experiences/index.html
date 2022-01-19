@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<h1> Experience </h1>
+
+
+<!-- <form action="% url 'experiences_create' %" method="POST"> -->
+  {% csrf_token %}
+  {{ experiences_form.as_p }}
+  <input type="submit" class="btn btn-secondary" value="Add experience">
+</form>
+
+
+
+{% for experience in experiences %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ experience.institution }}</span>
+      <p>Degree: {{ experience.degree }}:{{ experience.degree_description }}</p>
+      <p>Graduation: {{ experience.graduation }}</p>
+      <p>Location: {{ experience.location }}</p>
+      <!-- <a href="% url 'experiences_update' experience.id %" class="link-primary">Edit</a>
+      <a href="% url 'experiences_delete' experience.id %" class="link-danger">Delete</a> -->
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
