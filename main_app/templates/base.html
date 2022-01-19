@@ -17,7 +17,7 @@
   <header>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar brand link -->
-      <a class="navbar-brand ps-3" href="index.html">Resume Architect</a>
+      <a class="navbar-brand ps-3" href="/">Resume Architect</a>
       <!-- Hamburger Menu Toggle -->
       <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
       <!-- Navbar Search -->
@@ -35,11 +35,6 @@
             <li><a href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-              <li><a class="dropdown-item" href="{% url 'skills_create' %}">Add Skill</a></li>
-              <li><a class="dropdown-item" href="{% url 'skills_index' %}">All Skills</a></li>
-              <li><a class="dropdown-item" href="{% url 'educations_index' %}">All Education</a></li>
-              <li><a class="dropdown-item" href="{% url 'contacts_index' %}">Contact</a></li>
-              <li><a class="dropdown-item" href="{%url 'resumes_index' %}"> Resumes</a></li>
               {% else %}
               <li><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></li>
               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
@@ -55,12 +50,43 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
+                    <a class="nav-link" href="{% url 'resumes_index' %}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        All Resumes
                     </a>
-                    <div class="sb-sidenav-menu-heading">Interface</div>
+
+                    <div class="sb-sidenav-menu-heading">Details</div>
+
+                    <!-- Remove toggle and just show model index pages here -->
+                    <a class="nav-link" href="{% url 'contacts_index' %}">
+                      <div class="sb-nav-link-icon"></div>
+                      Contact Details
+                    </a>
+                    <a class="nav-link" href="{% url 'educations_index' %}">
+                      <div class="sb-nav-link-icon"></div>
+                      Education
+                    </a>
+                    <a class="nav-link" href="{% url 'skills_index' %}">
+                      <div class="sb-nav-link-icon"></div>
+                      Skills
+                    </a>
+                    <a class="nav-link" href="{% url 'skills_create' %}">
+                      <div class="sb-nav-link-icon"></div>
+                      Add Skill
+                    </a>
+                    <a class="nav-link" href="#">
+                      <div class="sb-nav-link-icon"></div>
+                      Experience
+                    </a>
+                    <a class="nav-link" href="#">
+                      <div class="sb-nav-link-icon"></div>
+                      Projects
+                    </a>
+                    <a class="nav-link" href="{% url 'skills_create' %}">
+                      <div class="sb-nav-link-icon"></div>
+                      Add Skill
+                    </a>
+
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Layouts
@@ -72,11 +98,14 @@
                             <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                         </nav>
                     </div>
+
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         Pages
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
+
+
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
