@@ -116,3 +116,14 @@ body {
   font-size: 3.36rem;
   margin-bottom: 1.8rem;
 }
+
+.form ul {
+  list-style: none;
+}
+
+.form--signup p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
