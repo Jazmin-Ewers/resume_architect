@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ResumeForm, EducationForm, ContactForm
+from .forms import EducationForm, ContactForm
 
 from main_app.models import *
 
@@ -48,28 +48,30 @@ class SkillUpdate(UpdateView):
   model = Skill
   fields = '__all__'
 
-def resume_create(request):
-  contacts = Contact.objects.all()
-  skills = Skill.objects.all()
-  projects = Projects.objects.all()
-  experiences = Experience.objects.all()
-  educations = Education.objects.all()
+class ResumeCreate(CreateView):
+  model = Resume
+  fields = ['name', 'date']
 
-
+# def resume_create(request):
+#   contacts = Contact.objects.all()
+#   skills = Skill.objects.all()
+#   projects = Projects.objects.all()
+#   experiences = Experience.objects.all()
+#   educations = Education.objects.all()
 
 def resumes_index(request):
   resumes = Resume.objects.all()
   return render(request, 'resumes/index.html', {'resumes': resumes})
 
-def resumes_detail(request, resume_id):
-  resume = Resume.objects.all()
-  # skills = Resume.objects.get()
-  resume_form = ResumeForm()
-  return render(request, 'resumes/detail.html',  {
-    'resume': resume,
-    'resume_form': resume_form,
-    # 'skills': skills
-    })
+# def resumes_detail(request, resume_id):
+#   resume = Resume.objects.all()
+#   # skills = Resume.objects.get()
+#   resume_form = ResumeForm()
+#   return render(request, 'resumes/detail.html',  {
+#     'resume': resume,
+#     'resume_form': resume_form,
+#     # 'skills': skills
+#     })
 
 def assoc_skill(request, resume_id, skill_id):
   resume=Resume.objects.get(id=resume_id)
