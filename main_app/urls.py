@@ -15,7 +15,7 @@ urlpatterns = [
   #Resume paths
 
   path('resumes/', views.resumes_index, name='resumes_index'),
-  path('resumes/create/', views.resumes_create, name='resumes_create'),
+  path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   # path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),
   # path('resumes/<int:resume_id>/assoc_skill/<int:skill_id>/', views.assoc_skill, name='assoc_skill'),
   

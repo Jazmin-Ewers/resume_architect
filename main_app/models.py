@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-from datetime import date
+from datetime import date, datetime
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -73,12 +73,17 @@ class Projects(models.Model):
     project_description = models.TextField(max_length = 2000)    
 
 class Resume(models.Model):
+    name = models.CharField(max_length=200)
+    date = models.DateField(default=datetime.now())
     user = models.ManyToManyField(User)
     contact = models.ManyToManyField(Contact)
     skills = models.ManyToManyField(Skill)
     projects = models.ManyToManyField(Projects)
     experience = models.ManyToManyField(Experience)
     education = models.ManyToManyField(Education)
-
+    
     def __str__(self):
-        return self.name    
+      return self.name  
+
+    def get_absolute_url(self):
+      return reverse('resumes_index')  
