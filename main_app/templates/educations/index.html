@@ -3,6 +3,15 @@
 
 <h1> Education </h1>
 
+
+<form action="{% url 'educations_create' %}" method="POST">
+  {% csrf_token %}
+  {{ educations_form.as_p }}
+  <input type="submit" class="btn btn-secondary" value="Add Education">
+</form>
+
+
+
 {% for education in educations %}
   <div class="card">
     <div class="card-content">
@@ -10,15 +19,10 @@
       <p>Degree: {{ education.degree }}:{{ education.degree_description }}</p>
       <p>Graduation: {{ education.graduation }}</p>
       <p>Location: {{ education.location }}</p>
-      <a href="">Edit</a>
-      <a href="#">Delete</a>
+      <a href="{% url 'educations_update' education.id %}" class="link-primary">Edit</a>
+      <a href="{% url 'educations_delete' education.id %}" class="link-danger">Delete</a>
     </div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ education_form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Add Education">
-      </form>
   </div>
   {% endfor %}
-  <a href="{% url 'educations_create' %}">Add Education</a>
+
 {% endblock %}
