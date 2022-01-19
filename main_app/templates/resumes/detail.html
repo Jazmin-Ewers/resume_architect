@@ -23,6 +23,7 @@
 
 <div class="col s6">
   <h3>{{ resume.name }}</h3>
+  <a href="{% url 'resumes_print' resume.id %}">Print</a>
   {% if resume.skills.count %}
     {% for skill in resume.skills.all %}
       <div class="card">
@@ -44,6 +45,7 @@
     <h5>No Skills</h5>
   {% endif %}
 </div>
+
 
 
 
