@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .forms import EducationForm, ContactForm, ResumeForm, SkillForm, ExperienceForm
+from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from main_app.models import *
 
@@ -30,6 +32,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+@login_required
 def skills_index(request):
   # Filter skills once user model has been connected to Skill model
   # skill = Skill.objects.filter(user=request.user)
@@ -40,7 +43,7 @@ def skills_index(request):
     'skills_form': skills_form
     })
 
-class SkillCreate(CreateView):
+class SkillCreate(LoginRequiredMixin, CreateView):
   model = Skill
   fields = '__all__'
 
@@ -48,15 +51,15 @@ class SkillCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class SkillUpdate(UpdateView):
+class SkillUpdate(LoginRequiredMixin, UpdateView):
   model = Skill
   fields = '__all__'
 
-class  SkillDelete(DeleteView):
+class  SkillDelete(LoginRequiredMixin, DeleteView):
   model = Skill
   success_url = '/skills/'
 
-class ResumeCreate(CreateView):
+class ResumeCreate(LoginRequiredMixin, CreateView):
   model = Resume
   fields = ['name', 'date']
 
@@ -67,10 +70,12 @@ class ResumeCreate(CreateView):
 #   experiences = Experience.objects.all()
 #   educations = Education.objects.all()
 
+@login_required
 def resumes_index(request):
   resumes = Resume.objects.all()
   return render(request, 'resumes/index.html', {'resumes': resumes})
 
+@login_required
 def resumes_detail(request, resume_id):
   resume = Resume.objects.get(id=resume_id)
   skills = Skill.objects.all()
@@ -90,6 +95,7 @@ def resumes_detail(request, resume_id):
     'resume_form': resume_form,
   })
 
+@login_required
 def resumes_print(request, resume_id):
   resume = Resume.objects.get(id=resume_id)
   skills = resume.skills.all()
@@ -113,11 +119,13 @@ def resumes_print(request, resume_id):
 #   else:
 #     return redirect('cats_index')
 
+@login_required
 def assoc_skill(request, resume_id, skill_id):
   resume=Resume.objects.get(id=resume_id)
   resume.skills.add(skill_id)
   return redirect('resumes_detail', resume_id=resume_id)
 
+@login_required
 def educations_index(request):
   educations = Education.objects.all()
   educations_form = EducationForm()
@@ -126,19 +134,19 @@ def educations_index(request):
     'educations_form': educations_form
     }) 
 
-class EducationCreate(CreateView):
+class EducationCreate(LoginRequiredMixin, CreateView):
   model= Education
   fields= '__all__'
 
-class EducationUpdate(UpdateView):
+class EducationUpdate(LoginRequiredMixin, UpdateView):
   model = Education
   fields = '__all__'
 
-class EducationDelete(DeleteView):
+class EducationDelete(LoginRequiredMixin, DeleteView):
   model = Education
   success_url = '/educations/'
 
-  
+@login_required  
 def contacts_index(request):
   contacts = Contact.objects.all()
   contacts_form = ContactForm()
@@ -156,19 +164,19 @@ def contacts_index(request):
 #       new_contact.save()
 #     return redirect('contacts_index')
 
-class ContactCreate(CreateView):
+class ContactCreate(LoginRequiredMixin, CreateView):
   model= Contact
   fields= '__all__'
 
-class ContactUpdate(UpdateView):
+class ContactUpdate(LoginRequiredMixin, UpdateView):
   model = Contact
   fields = '__all__'
 
-class ContactDelete(DeleteView):
+class ContactDelete(LoginRequiredMixin, DeleteView):
   model = Contact
   success_url = '/contacts/'
 
-
+@login_required
 def experiences_index(request):
   experiences = Experience.objects.all()
   experiences_form = ExperienceForm()
@@ -177,14 +185,14 @@ def experiences_index(request):
     'experiences_form': experiences_form
   })
 
-class ExperienceCreate(CreateView):
+class ExperienceCreate(LoginRequiredMixin, CreateView):
   model = Experience
   fields = '__all__'
 
-class ExperienceUpdate(UpdateView):
+class ExperienceUpdate(LoginRequiredMixin, UpdateView):
   model = Experience
   fields = '__all__'
 
-class ExperienceDelete(DeleteView):
+class ExperienceDelete(LoginRequiredMixin, DeleteView):
   model = Experience
   success_url = '/experiences/'
