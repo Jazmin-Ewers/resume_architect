@@ -1,14 +1,38 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <title>Resume Architect</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <nav class="home-nav">
+        <ul class="home-nav-list">
+          <li><a class="home-nav-link" href="#about">About</a></li>
+          <li><a class="home-nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+          <li><a class="home-nav-link" href="{% url 'login' %}">Log In</a></li>
+        </ul>
+      </nav>
+    </header>
 
-{% block content %}
+    <main class="main">
+      <form class="form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-login" value="Log In">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+    </main>
 
-<h1>Log In</h1>
+  </div>
 
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" class="btn" value="login">
-  <input type="hidden" name="next" value="{{ next }}">
-</form>
+</body>
+</html>
 
-{% endblock %}
+
+
