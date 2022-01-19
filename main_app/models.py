@@ -30,6 +30,7 @@ class Contact(models.Model):
     portfolio = models.URLField(max_length= 200)
     location = models.CharField(max_length= 200)
     job_title = models.CharField(max_length= 200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('contacts_index')
@@ -41,6 +42,7 @@ class Skill(models.Model):
         choices = TYPES,
         default = TYPES[0][0]) 
     description = models.TextField(max_length= 500)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.get_type_display()}, {self.name} {self.description}"    
@@ -54,6 +56,7 @@ class Experience(models.Model):
     start_date = models.DateField('Start Date')
     end_date = models.DateField('End Date')
     description = models.TextField(max_length = 2000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.workplace
@@ -70,7 +73,8 @@ class Education(models.Model):
         default=DEGREES[6][0],
         max_length=2
     )
-    degree_description = models.CharField(max_length= 300) 
+    degree_description = models.CharField(max_length= 300)
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
 
     def __str__(self):
         return self.get_degree_display()
@@ -83,7 +87,8 @@ class Projects(models.Model):
     locations = models.CharField(max_length= 200)
     project_date = models.DateField('Project Date')
     technologies = models.TextField(max_length = 800)
-    project_description = models.TextField(max_length = 2000)    
+    project_description = models.TextField(max_length = 2000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)    
 
 class Resume(models.Model):
     name = models.CharField(max_length=200)
