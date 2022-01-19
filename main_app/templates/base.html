@@ -17,7 +17,7 @@
   <header>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar brand link -->
-      <a class="navbar-brand ps-3" href="/">Resume Architect</a>
+      <a class="navbar-brand ps-3" href="{% url 'home' %}">Resume Architect</a>
       <!-- Hamburger Menu Toggle -->
       <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
       <!-- Navbar Search -->
@@ -32,7 +32,6 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               {% else %}
@@ -54,10 +53,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                         All Resumes
                     </a>
-
                     <div class="sb-sidenav-menu-heading">Details</div>
-
-                    <!-- Remove toggle and just show model index pages here -->
                     <a class="nav-link" href="{% url 'contacts_index' %}">
                       <div class="sb-nav-link-icon"></div>
                       Contact Details
@@ -82,11 +78,10 @@
                       <div class="sb-nav-link-icon"></div>
                       Projects
                     </a>
-                    <a class="nav-link" href="{% url 'skills_create' %}">
-                      <div class="sb-nav-link-icon"></div>
-                      Add Skill
-                    </a>
 
+
+
+                    <!-- these links still have drop down functionality but are not updated with our active paths -->
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Layouts
@@ -131,21 +126,12 @@
                                 </nav>
                             </div>
                         </nav>
-                    </div>
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
+                    </div>                  
                 </div>
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-                Start Bootstrap
+                {{ user.username }}
             </div>
         </nav>
     </div>
