@@ -1,21 +1,43 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<h1> Resumes </h1>
+<h2 class="heading-primary">Your Resumes</h2>
 
+<div class="main--container">
 
-{% for resume in resumes %}
-<a href="{% url 'resumes_detail' resume.id %}">
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ resume.name }}</span>
-      <p>Date: {{ resume.date }}</p>
-      <a href="">Edit</a>
-      <a href="">Delete</a>
+  {% for resume in resumes %}
+  <div class="card-box">
+    <div class="card-body">
+      <a href="{% url 'resumes_detail' resume.id %}">
+      <h2 class="heading-secondary">{{ resume.name }}</h2>
+
+          <div class="card-text">
+            <p class="card-text--title">Date:</p> 
+            <p class="card-text--detail">{{ resume.date }}</p>
+          </div>
+        </a>
+        {% if resume.user.id == user.id %}
+        <div class="card-links">
+          <a href="">Edit</a>
+          <a href="">Delete</a>
+        </div>
+        {% endif %}
+      </div>
     </div>
-  </div>
-</a>
 {% endfor %}
 
-  <a href="{% url 'resumes_create' %}" class="btn btn-primary">Add Resume</a>
+
+<!-- Resume Form -->
+<div class="form-box">
+  <h2 class="heading-secondary">Add New Resume</h2>
+  <form class="form--new" action="{% url 'resumes_create' %}" method="POST">
+    {% csrf_token %}
+    {{resume_form.as_p}}
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+</div>
+
+
+</div>
+
 {% endblock %}

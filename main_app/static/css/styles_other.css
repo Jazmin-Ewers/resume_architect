@@ -1,0 +1,127 @@
+.heading-primary {
+  font-size: 24px;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.heading-secondary {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.main--container {
+  margin-top: 16px;
+  display: flex;
+  flex: 0 1 0;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
+} 
+.delete-container {
+  padding: 36px;
+}
+
+.form--new,
+.form--edit {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.form--new p,
+.form--edit p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px;
+  margin-bottom: 0;
+}
+
+.form--new p input,
+.form--edit p input {
+  width: 180px;
+  height: 20px;
+}
+
+.form--new label,
+.form--edit label {
+  font-size: 16px;
+}
+
+.form--new select,
+.form--edit select {
+  width: 180px;
+}
+
+.form-box {
+  min-width: 320px;
+  max-width: 390px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.form-btn {
+  align-self: center;
+  margin: 10px;
+}
+
+.card-box {
+  width: 360px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  padding: 12px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-text--title {
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 0;
+  padding-right: 8px;
+}
+.card-text--detail {
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.card-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.card-links > * {
+  padding: 0 12px;
+}
+
+.delete-links {
+  display: flex;
+  justify-content: center;
+}

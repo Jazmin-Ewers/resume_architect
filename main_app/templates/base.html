@@ -6,18 +6,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
-  <link rel="stylesheet" href="{% static 'css/resume.css' %}" type="text/css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/styles_other.css' %}" type="text/css">
   <title>Resume Architect</title>
 </head>
 <body class="sb-nav-fixed">
   <header>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar brand link -->
-      <a class="navbar-brand ps-3" href="{% url 'home' %}">Resume Architect</a>
+      <a class="navbar-brand ps-3" href="{% url 'resumes_index' %}">Resume Architect</a>
       <!-- Hamburger Menu Toggle -->
       <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
       <!-- Navbar Search -->

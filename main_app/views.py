@@ -77,7 +77,11 @@ class ResumeCreate(LoginRequiredMixin, CreateView):
 @login_required
 def resumes_index(request):
   resumes = Resume.objects.filter(user=request.user)
-  return render(request, 'resumes/index.html', {'resumes': resumes})
+  resume_form = ResumeForm()
+  return render(request, 'resumes/index.html', {
+    'resumes': resumes,
+    'resume_form': resume_form,
+    })
 
 @login_required
 def resumes_detail(request, resume_id):

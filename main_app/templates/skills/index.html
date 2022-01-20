@@ -1,22 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- Add Contact Form -->
-<div class="card mt-4 mb-4">
-    <div class="card-body">
-      <form action="{% url 'skills_create' %}" method="POST">
-        {% csrf_token %}
-        {{ skills_form.as_p }}
-        <input type="submit" class="btn btn-secondary" value="Add Skill">
-      </form>
-    </div>
-</div>  
+<h2 class="heading-primary">Skills</h2>
 
-
-
-
-<div class="card mb-4">
-  <div class="card-body">
+<div class="main--container">
+  {% if skills.count %}
+  <div class="table-body">
     <table class="table">
       <thead>
         <tr>
@@ -33,13 +22,28 @@
             <td>{{ skill.name }}</td>
             <td>{{ skill.get_type_display }}</td>
             <td>{{ skill.description }}</td>
-            <td><a href="{% url 'skills_update' skill.id %}" class="link-primary">Edit</a></td>
-            <td><a href="{% url 'skills_delete' skill.id %}" class="link-danger">Delete</a></td>
+            {% if skill.user.id == user.id %}
+              <td><a href="{% url 'skills_update' skill.id %}" class="link-primary">Edit</a></td>
+              <td><a href="{% url 'skills_delete' skill.id %}" class="link-danger">Delete</a></td>
+            {% endif %}
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-</div>
+  {% else %}
+  <h3>You have no skills added.</h3>
+  {% endif %}
 
+<!-- Add Contact Form -->
+<div class="form-box">
+  <h2 class="heading-secondary">Add New Skill</h2>
+    <form class="form--new" action="{% url 'skills_create' %}" method="POST">
+      {% csrf_token %}
+      {{ skills_form.as_p }}
+      <input type="submit" class="btn btn-primary form-btn" value="Add Skill">
+    </form>
+</div>  
+
+</div>
 {% endblock %}
