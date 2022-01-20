@@ -167,17 +167,8 @@
 								<div id="yui-main">
 									<div class="yui-b">
 
-										<div class="yui-gf">
-											<div class="yui-u first">
-												<h2>Profile</h2>
-											</div>
-											<div class="yui-u">
-												<p class="enlarge">
-													Progressively evolve cross-platform ideas before impactful infomediaries. Energistically visualize tactical initiatives before cross-media catalysts for change. 
-												</p>
-											</div>
-										</div><!--// .yui-gf -->
-
+										
+<!-- 
 										<div class="yui-gf">
 											<div class="yui-u first">
 												<h2>Switch</h2>
@@ -199,7 +190,7 @@
 														<p>Proven ability to lead and manage a wide variety of design and development projects in team and independent situations.</p>
 													</div>
 											</div>
-										</div> <!--// .yui-gf -->
+										</div> // .yui-gf -->
 
 										<div class="yui-gf">
 											<div class="yui-u first">
@@ -235,14 +226,16 @@
 
 											<div class="yui-u">
 
+                        {% for experience in experiences %}
 												<div class="job">
-													<h2>Facebook</h2>
-													<h3>Senior Interface Designer</h3>
-													<h4>2005-2007</h4>
-													<p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>
+													<h2>{{experience.workplace}}</h2>
+													<h3>{{experience.job_title}}</h3>
+													<h4>{{experience.start_date.year}}-{{experience.end_date.year}}</h4>
+													<p>{{experience.description}}</p>
 												</div>
+                        {% endfor %}
 
-												<div class="job">
+												<!-- <div class="job">
 													<h2>Apple Inc.</h2>
 													<h3>Senior Interface Designer</h3>
 													<h4>2005-2007</h4>
@@ -262,7 +255,7 @@
 													<h3>Lead Web Designer</h3>
 													<h4>2001-2004</h4>
 													<p>Globally re-engineer cross-media schemas through viral methods of empowerment. Proactively grow long-term high-impact human capital and highly efficient innovation. Intrinsicly iterate excellent e-tailers with timely e-markets.</p>
-												</div>
+												</div> -->
 
 											</div><!--// .yui-u -->
 										</div><!--// .yui-gf -->
@@ -272,10 +265,14 @@
 											<div class="yui-u first">
 												<h2>Education</h2>
 											</div>
-											<div class="yui-u">
-												<h2>Indiana University - Bloomington, Indiana</h2>
-												<h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
-											</div>
+                      {% for education in educations %}
+											<div class="yui-u job">
+												<h2>{{education.institution}} - {{education.location}}</h2>
+												<h3>{{education.get_degree_display}} - {{education.degree_description }}</h3>
+                        <h4>{{education.graduation.year}}</h4>
+                      </div>
+                      {% endfor %}
+                      
 										</div><!--// .yui-gf -->
 
 
@@ -283,9 +280,24 @@
 								</div><!--// yui-main -->
 							</div><!--// bd -->
 
-							<div id="ft">
-								<p>Jonathan Doe &mdash; <a href="mailto:name@yourdomain.com">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>
-							</div><!--// footer -->
+              <div class="yui-gf">
+						
+                <div class="yui-u first">
+                  <h2>Projects</h2>
+                </div><!--// .yui-u -->
+
+                <div class="yui-u">
+
+                  {% for project in projects %}
+                  <div class="job">
+                    <h2>{{project.name}}</h2>
+                    <h3></h3>
+                    <h4>{{project.date.year}}</h4>
+                    <p>{{project.description}}</p>
+                  </div>
+                  {% endfor %}
+
+							
 
 						</div><!-- // inner -->
 
