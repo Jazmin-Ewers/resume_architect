@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Contact</h1>
 
-  <h4>Are you sure you want to delete this contact info?</h4>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn btn-primary">
-    <a href="{% url 'contacts_index' %}">Cancel</a>
-  </form>
+  <div class="delete-container">
+    <h2 class="heading-secondary">Are you sure you want to delete this contact info?</h2>
+    <form class="form--delete" action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
+      <a class="btn btn-danger form-btn" href="{% url 'contacts_index' %}">Cancel</a>
+    </form>
+  </div>
+
 {% endblock %}

@@ -18,6 +18,9 @@
   justify-content: center;
   align-items: flex-start;
 } 
+.delete-container {
+  padding: 36px;
+}
 
 .form--new {
   display: flex;
