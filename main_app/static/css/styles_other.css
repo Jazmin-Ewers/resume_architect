@@ -9,7 +9,8 @@
   font-weight: bold;
 }
 
-.index-container {
+.main--container {
+  margin-top: 16px;
   display: flex;
   flex: 0 1 0;
   flex-wrap: wrap;
@@ -32,7 +33,7 @@
 }
 
 .form--new p input {
-  width: 160px;
+  width: 180px;
   height: 20px;
 }
 
@@ -41,14 +42,15 @@
 }
 
 .form-box {
-  min-width: 290px;
+  min-width: 320px;
+  max-width: 390px;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 11px;
   overflow: hidden;
   transition: all 0.4s;
 }
 
-.btn-grid {
+.form-btn {
   align-self: center;
   margin: 10px;
 }
@@ -72,6 +74,7 @@
 .card-body {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .card-text {
@@ -91,7 +94,7 @@
 .card-links {
   display: flex;
   justify-content: center;
-  margin-top: 6px;
+  margin-top: 12px;
 }
 
 .card-links > * {

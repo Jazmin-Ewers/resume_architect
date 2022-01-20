@@ -5,7 +5,7 @@
   <h2 class="heading-primary"> Contact Information </h2>
 
 
-<div class="index-container">
+<div class="main--container">
 
   <!-- Contact Card -->
   {% for contact in contacts %}
@@ -57,7 +57,7 @@
     <form class="form--new" action="{% url 'contacts_create' %}" method="POST">
       {% csrf_token %}
       {{ contacts_form.as_p }}
-      <input type="submit" class="btn btn-primary btn-grid" value="Add Contact">
+      <input type="submit" class="btn btn-primary form-btn" value="Add Contact">
     </form>
   </div>
 
