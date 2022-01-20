@@ -3,87 +3,106 @@
 
 
 <h3>{{ resume.name }}</h3>
-<a href="{% url 'resumes_print' resume.id %}">Print</a>
+<a href="{% url 'resumes_print' resume.id %}">Print this resume</a>
 
 <div class="resume-detail-container">
   
   <div class="resume-notassoc">
-    <h4>Not yet Associated with Resume</h4>
+    <!-- <h4>Not yet Associated with Resume</h4> -->
 
       <!-- Not Associated Contacts -->
       <section class="section-notassoc">
-        <h2>Contacts</h2>
-        {% for contact in contacts %}
-          <div class="resume-card-box">
-            <p class="card-text--title">{{ contact.first_name }} {{ contact.last_name }}</p>
-            <p class="">{{ contact.job_title }}</p>
-            <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
-              {% csrf_token %}
-              <button class="btn btn-primary" Type="submit">ADD</button>
-            </form>
-          </div>
-        {% endfor %}
+        <h4>Contacts</h4>
+        <div class="resume-card-container">
+          {% for contact in contacts %}
+            <div class="resume-card-box">
+              <div class="resume-card-body">
+                <p class="card-text--title">{{ contact.first_name }} {{ contact.last_name }}</p>
+                <p class="">{{ contact.job_title }}</p>
+                <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-sm" Type="submit">ADD</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
 
 
       <!-- Not Associated Skills -->
       <section class="section-notassoc">
-        <h2>Skills</h2>
-        {% for skill in skills %}
-          <div class="resume-card-box">
-            <p class="">{{ skill.name }}</p>
-            <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
-              {% csrf_token %}
-              <button class="btn btn-primary" Type="submit"> ADD</button>
-            </form>
-          </div>
-        {% endfor %}
+        <h4>Skills</h4>
+        <div class="resume-card-container">
+          {% for skill in skills %}
+            <div class="resume-card-box">
+              <div class="resume-card-body">
+                <p class="card-text--title">{{ skill.name }}</p>
+                <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-sm" Type="submit"> ADD</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
 
 
       <!-- Not Associated Projects -->
       <section class="section-notassoc">
-        <h2>Projects</h2>
-        {% for project in projects %}
-          <div class="resume-card-box">
-            <p class="">{{ project.name }}</p>
-            <form action="{% url 'assoc_project' resume.id project.id %}" method="POST">
-              {% csrf_token %}
-              <button class="btn btn-primary" Type="submit"> ADD</button>
-            </form>
-          </div>
-        {% endfor %}
+        <h4>Projects</h4>
+        <div class="resume-card-container">
+          {% for project in projects %}
+            <div class="resume-card-box">
+              <div class="resume-card-body">
+                <p class="card-text--title">{{ project.name }}</p>
+                <form action="{% url 'assoc_project' resume.id project.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-sm" Type="submit"> ADD</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
 
       <!-- Not Associated Experiences -->
       <section class="section-notassoc">
-        <h2>Experiences</h2>
-        {% for experience in experiences %}
-          <div class="resume-card-box">
-            <p class="">{{ experience.workplace }}</p>
-            <form action="{% url 'assoc_experience' resume.id experience.id %}" method="POST">
-              {% csrf_token %}
-              <button class="btn btn-primary" Type="submit"> ADD</button>
-            </form>
-          </div>
-        {% endfor %}
+        <h4>Experience</h4>
+        <div class="resume-card-container">
+          {% for experience in experiences %}
+            <div class="resume-card-box">
+              <div class="resume-card-body">
+                <p class="card-text--title">{{ experience.workplace }}</p>
+                <form action="{% url 'assoc_experience' resume.id experience.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-primary btn-sm" Type="submit"> ADD</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
 
       <!-- Not Associated Educations -->
       <section class="section-notassoc">
-        <h2> Not Associated Education</h2>
-        {% for education in educations %}
-          <div class="resume-card-box">
-            <p class="-title">{{ education.institution }}</p>
-            <p>Type: {{ education.get_degree_display }}</p>
-            <form action="{% url 'assoc_education' resume.id education.id %}" method="POST">
-              {% csrf_token %}
-              <button class="btn btn-primary" Type="submit"> ADD</button>
-            </form>
-          </div>
-        {% endfor %}
+        <h4>Education</h4>
+        <div class="resume-card-container">
+          {% for education in educations %}
+            <div class="resume-card-box">
+              <div class="resume-card-body">
+                <p class="card-text--title">{{ education.institution }}</p>
+                <p>Type: {{ education.get_degree_display }}</p>
+                <form action="{% url 'assoc_education' resume.id education.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" Type="submit"> ADD</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </section>
-
   </div>
 
   <!-- Associated with Resume -->

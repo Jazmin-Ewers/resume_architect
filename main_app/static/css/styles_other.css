@@ -127,5 +127,35 @@
 }
 
 .resume-detail-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.section-notassoc {
   display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.resume-card-box{
+  /* width: auto; */
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+  background-color: aqua;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resume-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume-card-body {
+  padding: 8px;
 }
