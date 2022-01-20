@@ -86,16 +86,16 @@ def resumes_index(request):
 @login_required
 def resumes_detail(request, resume_id):
   resume = Resume.objects.filter(user=request.user).get(id=resume_id)
-  contacts = Contact.objects.filter(user=request.user)
+  contacts_not_assoc = Contact.objects.filter(user=request.user).exclude(id__in=resume.contact.all().values_list('id'))
   projects = Project.objects.filter(user=request.user)
   experiences = Experience.objects.filter(user=request.user)
   educations = Education.objects.filter(user=request.user)
   resume_form = ResumeForm()
-  skills_resume_doesnt_have = Skill.objects.exclude(id__in=resume.skills.all().values_list('id'))
+  skills_resume_doesnt_have = Skill.objects.filter(user=request.user).exclude(id__in=resume.skills.all().values_list('id'))
   return render(request, 'resumes/detail.html',  {
     'resume': resume,
     'skills': skills_resume_doesnt_have,
-    'contacts': contacts,
+    'contacts': contacts_not_assoc,
     'projects': projects,
     'experiences': experiences,
     'educations': educations,
@@ -131,6 +131,12 @@ def assoc_skill(request, resume_id, skill_id):
   resume=Resume.objects.get(id=resume_id)
   resume.skills.add(skill_id)
   return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
+def assoc_contact(request, resume_id, contact_id):
+  resume=Resume.objects.get(id=resume_id)
+  resume.contact.add(contact_id)
+  return redirect('resumes_detail', resume_id=resume_id)   
 
 @login_required
 def educations_index(request):
@@ -191,6 +197,12 @@ class ContactUpdate(LoginRequiredMixin, UpdateView):
 class ContactDelete(LoginRequiredMixin, DeleteView):
   model = Contact
   success_url = '/contacts/'
+
+# @login_required
+# def assoc_contact(request, resume_id, contact_id):
+#   resume=Resume.objects.get(id=resume_id)
+#   resume.contact.add(contact_id)
+#   return redirect('resumes_detail', resume_id=resume_id)  
 
 @login_required
 def experiences_index(request):
