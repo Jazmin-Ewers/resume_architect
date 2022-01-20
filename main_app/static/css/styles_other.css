@@ -1,16 +1,47 @@
+.heading-primary {
+  font-size: 24px;
+  padding: 24px;
+}
+
+.heading-secondary {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.index-container {
+  display: flex;
+  flex: 0 1 0;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
+} 
+
 .form--new {
   display: flex;
   flex-direction: column;
-
+  padding: 12px;
 }
-.form--new p{
+
+.form--new p {
   display: flex;
-  justify-content: flex-start;
-  padding: 0.8rem;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px;
+}
+
+.form--new p input {
+  width: 160px;
+  height: 20px;
+}
+
+.form--new label {
+  font-size: 16px;
 }
 
 .form-box {
-  width: 300px;
+  min-width: 290px;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 11px;
   overflow: hidden;
@@ -18,5 +49,51 @@
 }
 
 .btn-grid {
-  align-self: start;
+  align-self: center;
+  margin: 10px;
+}
+
+.card-box {
+  width: 360px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  transition: all 0.4s;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  padding: 12px;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-text--title {
+  font-weight: bold;
+  text-align: left;
+}
+.card-text--detail {
+  text-align: left;
+  padding: 4px;
+}
+
+.card-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.card-links > * {
+  padding: 0 12px;
 }

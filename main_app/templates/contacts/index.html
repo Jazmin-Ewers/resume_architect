@@ -1,49 +1,67 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<div class="row">
 
-  <div class="">
-    <h2 class="heading-primary"> Contact Information </h2>
-  </div>
+  <h2 class="heading-primary"> Contact Information </h2>
+
+
+<div class="index-container">
 
   <!-- Contact Card -->
   {% for contact in contacts %}
-    <div class="">
-      <div class="">
-        <div class="card-body">
-          <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
-          <p><b>Email:</b> {{ contact.email }}</p>
-          <p><b>LinkedIn: </b>{{ contact.linkedin }}</p>
-          <p><b>GitHub:</b> {{ contact.github }}</p>
-          <p><b>Portfolio:</b> {{ contact.portfolio }}</p>
-          <p><b>Location:</b> {{ contact.location }}</p>
-          <p><b>Job Title:</b> {{ contact.job_title }}</p>
-          {% if contact.user.id == user.id %}
-            <a href="{% url 'contacts_update' contact.id %}">Edit</a>
-            <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
-          {% endif %}
+
+    <div class="card-box">
+      <h2 class="heading-secondary">{{ contact.first_name }} {{ contact.last_name }}</h2>
+      <div class="card-body">
+        <div class="card-text">
+          <p class="card-text--title">Title:</p> 
+          <p class="card-text--detail">{{ contact.job_title }}</p>
         </div>
+        <div class="card-text">
+          <p class="card-text--title">Location:</p> 
+          <p class="card-text--detail">{{ contact.location }}</p>
+        </div>
+        <div class="card-text">
+          <p class="card-text--title">Email:</p> 
+          <p class="card-text--detail">{{ contact.email }}</p>
+        </div>
+        <div class="card-text">
+          <p class="card-text--title">LinkedIn:</p> 
+          <p class="card-text--detail">{{ contact.linkedin }}</p>
+        </div>
+        <div class="card-text">
+          <p class="card-text--title">GitHub:</p> 
+          <p class="card-text--detail">{{ contact.github }}</p>
+        </div>
+        <div class="card-text">
+          <p class="card-text--title">Portfolio:</p> 
+          <p class="card-text--detail">{{ contact.portfolio }}</p>
+        </div>
+
+        {% if contact.user.id == user.id %}
+
+        <div class="card-links">
+          <a class="link-primary" href="{% url 'contacts_update' contact.id %}">Edit</a>
+          <a class="link-danger" href="{% url 'contacts_delete' contact.id %}">Delete</a>
+        </div>
+        {% endif %}
       </div>
-  </div>
+    </div>
+
   {% endfor %}
 
+
+  <!-- Add Contact Form -->
+  <div class="form-box">
+    <h2 class="heading-secondary">Add New Contact Info</h2>
+    <form class="form--new" action="{% url 'contacts_create' %}" method="POST">
+      {% csrf_token %}
+      {{ contacts_form.as_p }}
+      <input type="submit" class="btn btn-primary btn-grid" value="Add Contact">
+    </form>
+  </div>
+
 </div>
-
-    <!-- Add Contact Form -->
-
-     
-<div class="form-box">
-  <form class="form--new" action="{% url 'contacts_create' %}" method="POST">
-    {% csrf_token %}
-    {{ contacts_form.as_p }}
-    <input type="submit" class="btn btn-primary btn-grid" value="Add Contact">
-  </form>
-</div>
-
-  
-
-
 
 
 {% endblock %}
