@@ -197,10 +197,39 @@
 												<h2>Skills</h2>
 											</div>
 											<div class="yui-u">
-												<ul class="talent">
-																				{% for skill in skills %}     
+                        <h4><b>Language: &nbsp;</b>
+                          <span>
+                            {% for skill in skills %} 
+                              {% if skill.type == 'L' %}
+                                {{ skill.name }} |
+                              {% endif %}
+                            {% endfor %}
+                          </span>
+                        </h4>
+                        <h4><b>Framework: &nbsp;</b>
+                          <span>
+                            {% for skill in skills %} 
+                              {% if skill.type == 'F' %}
+                                {{ skill.name }} |
+                              {% endif %}
+                            {% endfor %}
+                          </span>
+                        </h4>    
+                        <h4><b>Database &nbsp;</b>
+                          <span>
+                            {% for skill in skills %} 
+                              {% if skill.type == 'D' %}
+                                {{ skill.name }} |
+                              {% endif %}
+                            {% endfor %}
+                          </span>
+                        </h4>  
+
+
+												<!-- <ul class="talent">
+														{% for skill in skills %}     
 													<li>{{ skill.name }}</li>
-																					{% endfor %}
+														{% endfor %}
 													<li class="last"></li>
 												</ul>
 
@@ -214,7 +243,7 @@
 													<li>OS X</li>
 													<li>Windows XP/Vista</li>
 													<li class="last">Linux</li>
-												</ul>
+												</ul> -->
 											</div>
 										</div><!--// .yui-gf-->
 
