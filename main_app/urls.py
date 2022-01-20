@@ -15,10 +15,12 @@ urlpatterns = [
   path('resumes/', views.resumes_index, name='resumes_index'),
   path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),
+  path('resumes/<int:resume_id>/print', views.resumes_print, name='resumes_print'),
   path('resumes/<int:resume_id>/assoc_skill/<int:skill_id>/', views.assoc_skill, name='assoc_skill'),
   path('resumes/<int:resume_id>/assoc_contact/<int:contact_id>/', views.assoc_contact, name='assoc_contact'),
   path('resumes/<int:resume_id>/assoc_education/<int:education_id>/', views.assoc_education, name='assoc_education'),
-  path('resumes/<int:resume_id>/print', views.resumes_print, name='resumes_print'),
+  path('resumes/<int:resume_id>/assoc_project/<int:project_id>/', views.assoc_project, name='assoc_project'),
+  path('resumes/<int:resume_id>/assoc_experience/<int:experience_id>/', views.assoc_experience, name='assoc_experience'),
 
   # Education Paths
   path('educations/', views.educations_index, name='educations_index'),
