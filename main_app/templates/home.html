@@ -12,11 +12,20 @@
   <div class="wrapper">
     <header class="header">
       <nav class="home-nav">
-        <ul class="home-nav-list">
-          <li><a class="home-nav-link" href="#about">About</a></li>
-          <li><a class="home-nav-link" href="{% url 'signup' %}">Sign Up</a></li>
-          <li><a class="home-nav-link" href="{% url 'login' %}">Log In</a></li>
-        </ul>
+        {% if user.is_authenticated %}
+          <ul class="home-nav-list--spread">
+            <li><a class="home-nav-link" href="{% url 'resumes_index' %}">Go to Your Resumes</a></li>
+            <li><a class="home-nav-link" href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+          
+        {% else %}
+          <ul class="home-nav-list">
+            <li><a class="home-nav-link" href="#about">About</a></li>
+            <li><a class="home-nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a class="home-nav-link" href="{% url 'login' %}">Log In</a></li>
+          </ul>
+        {% endif %}
+
       </nav>
     </header>
     <main class="main">
@@ -32,3 +41,4 @@
   
 </body>
 </html>
+

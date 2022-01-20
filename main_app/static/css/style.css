@@ -24,13 +24,24 @@ body {
   min-height: 100vh;
 }
 
-.home-nav-list {
+.home-nav-list,
+.home-nav-list--spread {
   list-style: none;
   padding: 1.8rem;
   display: flex;
   gap: 2.4rem;
   align-items: center;
+  
+}
+
+.home-nav-list {
   justify-content: flex-start;
+}
+
+.home-nav-list--spread {
+  justify-content: flex-end;
+  color: #cccccc;
+
 }
 
 .home-nav-link:link,
@@ -46,6 +57,7 @@ body {
 .home-nav-link:active {
   color: rgb(221, 216, 216);
 }
+
 
 .main {
   display: flex;
@@ -77,8 +89,8 @@ body {
   padding: 1.6rem 3.2rem;
   border-radius: 9px;
   text-decoration: none;
-  background-color: #1864ab;
-  color: #fff;
+  background-color: #ffe8cc;
+  color: #333;
 
   /* Only necessary for the .btn */
   border: none;
@@ -90,9 +102,8 @@ body {
 
 .btn:hover,
 .btn:active {
-  background-color: #f1f3f5;
-  background-color:  #ffe8cc;
-  color: #333;
+  background-color:  #f59f00;
+  color: #fff;
 }
 
 .form {
