@@ -87,8 +87,8 @@ def resumes_index(request):
 def resumes_detail(request, resume_id):
   resume = Resume.objects.filter(user=request.user).get(id=resume_id)
   contacts = Contact.objects.filter(user=request.user).exclude(id__in=resume.contacts.all().values_list('id'))
-  projects = Project.objects.filter(user=request.user)
-  experiences = Experience.objects.filter(user=request.user)
+  projects = Project.objects.filter(user=request.user).exclude(id__in=resume.projects.all().values_list('id'))
+  experiences = Experience.objects.filter(user=request.user).exclude(id__in=resume.experiences.all().values_list('id'))
   educations = Education.objects.filter(user=request.user).exclude(id__in=resume.educations.all().values_list('id'))
   resume_form = ResumeForm()
   skills = Skill.objects.filter(user=request.user).exclude(id__in=resume.skills.all().values_list('id'))
