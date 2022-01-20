@@ -35,4 +35,11 @@ urlpatterns = [
   path('experiences/create/', views.ExperienceCreate.as_view(), name='experiences_create'),
   path('experiences/<int:pk>/update/', views.ExperienceUpdate.as_view(), name='experiences_update'),
   path('experiences/<int:pk>/delete/', views.ExperienceDelete.as_view(), name='experiences_delete'),
+
+  # Projects Paths
+  path('projects/', views.projects_index, name='projects_index'),
+  path('projects/create/', views.ProjectCreate.as_view(), name='projects_create'),
+  path('projects/<int:pk>/update/', views.ProjectUpdate.as_view(), name='projects_update'),
+  path('projects/<int:pk>/delete/', views.ProjectDelete.as_view(), name='projects_delete'),
+
 ]

@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<h1> Projects </h1>
+
+
+<form action="{% url 'projects_create' %}" method="POST">
+  {% csrf_token %}
+  {{ projects_form.as_p }}
+  <input type="submit" class="btn btn-secondary" value="Add Project">
+</form>
+
+
+
+{% for project in projects %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ project.name }}</span>
+      <p>Location: {{ project.location }}</p>
+      <p>Date: {{ project.date }}</p>
+      <p>Technologies: {{ project.technologies }}</p>
+      <p>Description: {{ project.description }}</p>
+      <a href="{% url 'projects_update' project.id %}" class="link-primary">Edit</a> 
+      <a href="{% url 'projects_delete' project.id %}" class="link-danger">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
