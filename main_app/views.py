@@ -106,9 +106,17 @@ def resumes_detail(request, resume_id):
 def resumes_print(request, resume_id):
   resume = Resume.objects.get(id=resume_id)
   skills = resume.skills.all()
+  contacts = resume.contacts.all()
+  projects = resume.projects.all()
+  experiences = resume.experiences.all()
+  educations = resume.educations.all()
   return render(request, 'resumes/print.html', {
     'resume': resume,
-    'skills': skills
+    'skills': skills,
+    'contacts': contacts,
+    'projects': projects,
+    'experiences': experiences,
+    'educations': educations,
     })  
 
 # def cats_detail(request, cat_id):

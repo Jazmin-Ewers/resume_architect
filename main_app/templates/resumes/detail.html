@@ -20,10 +20,14 @@
               <div class="resume-card-body">
                 <p class="card-text--title">{{ contact.first_name }} {{ contact.last_name }}</p>
                 <p class="">{{ contact.job_title }}</p>
+                {% if resume.contacts.count == 1 %}
+
+                {% else %}
                 <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
                   {% csrf_token %}
                   <button class="btn btn-primary btn-sm" Type="submit">ADD</button>
                 </form>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
