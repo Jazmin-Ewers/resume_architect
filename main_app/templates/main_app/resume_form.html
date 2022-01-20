@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      {{form.as_table}}
-	</table>
-<input type="submit" value="Submit" class="btn btn-primary">
-</form>
+<div class="main--container">
 
+  <div class="form-box">
+    <h2 class="heading-secondary">Edit Resume</h2>
+    <form class="form--edit" action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit" class="btn btn-primary form-btn">
+    </form>
+  </div>
+
+
+</div>
 
 {% endblock %}

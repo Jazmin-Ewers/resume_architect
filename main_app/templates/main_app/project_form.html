@@ -2,14 +2,19 @@
 
 {% block content %}
 
-<h1> Edit Project </h1>
+<div class="main--container">
 
-<form action="" method="post">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" class="btn btn-primary">
-</form>
+  <div class="form-box">
+    <h2 class="heading-secondary">Edit Project</h2>
+    <form class="form--edit" action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit" class="btn btn-primary form-btn">
+    </form>
+  </div>
+
+
+</div>
+
 
 {% endblock %}

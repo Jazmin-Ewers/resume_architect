@@ -8,10 +8,10 @@
     <form class="form--delete" action="" method="POST">
       {% csrf_token %}
 
-    <div class="delete-links">
-      <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
-      <a class="btn btn-danger form-btn" href="{% url 'contacts_index' %}">Cancel</a>
-    </div> 
+      <div class="delete-links">
+        <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
+        <a class="btn btn-danger form-btn" href="{% url 'contacts_index' %}">Cancel</a>
+      </div> 
 
     </form>
   </div>

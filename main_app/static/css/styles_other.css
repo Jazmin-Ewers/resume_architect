@@ -104,9 +104,10 @@
   font-weight: bold;
   text-align: left;
   margin-bottom: 0;
+  padding-right: 8px;
 }
 .card-text--detail {
-  text-align: left;
+  text-align: right;
   margin-bottom: 0;
 }
 
