@@ -19,8 +19,10 @@
       <p>Location: {{ experience.location }}</p>
       <p>Dates: {{ experience.start_date }} - {{ experience.end_date }}</p>
       <p>Description: {{ experience.description }}</p>
-      <a href="{% url 'experiences_update' experience.id %}" class="link-primary">Edit</a>
-      <a href="{% url 'experiences_delete' experience.id %}" class="link-danger">Delete</a>
+      {% if experience.user.id == user.id %}
+        <a href="{% url 'experiences_update' experience.id %}" class="link-primary">Edit</a>
+        <a href="{% url 'experiences_delete' experience.id %}" class="link-danger">Delete</a>
+      {% endif %}
     </div>
   </div>
   {% endfor %}

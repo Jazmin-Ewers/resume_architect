@@ -10,8 +10,10 @@
     <div class="card-content">
       <span class="card-title">{{ resume.name }}</span>
       <p>Date: {{ resume.date }}</p>
-      <a href="">Edit</a>
-      <a href="">Delete</a>
+      {% if resume.user.id == user.id %}
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+      {% endif %}
     </div>
   </div>
 </a>

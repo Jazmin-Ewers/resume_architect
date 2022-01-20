@@ -20,8 +20,10 @@
       <p>Date: {{ project.date }}</p>
       <p>Technologies: {{ project.technologies }}</p>
       <p>Description: {{ project.description }}</p>
-      <a href="{% url 'projects_update' project.id %}" class="link-primary">Edit</a> 
-      <a href="{% url 'projects_delete' project.id %}" class="link-danger">Delete</a>
+      {% if project.user.id == user.id %}
+        <a href="{% url 'projects_update' project.id %}" class="link-primary">Edit</a> 
+        <a href="{% url 'projects_delete' project.id %}" class="link-danger">Delete</a>
+      {% endif %}
     </div>
   </div>
   {% endfor %}

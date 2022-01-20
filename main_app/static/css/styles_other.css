@@ -1,0 +1,22 @@
+.form--new {
+  display: flex;
+  flex-direction: column;
+
+}
+.form--new p{
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.8rem;
+}
+
+.form-box {
+  width: 300px;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.btn-grid {
+  align-self: start;
+}

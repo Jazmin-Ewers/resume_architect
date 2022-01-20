@@ -1,44 +1,48 @@
 {% extends 'base.html'%}
 {% block content %}
 
-  <div class="row">
-    <div class="col-12">
-      <h2 class="mt-4 mb-4"> Contact Information </h2>
-    </div>
+<div class="row">
 
-    <!-- Contact Card -->
-    {% for contact in contacts %}
-      <div class="col-md-6 col-lg-4">
-        <div class="card my-3">
-          <div class="card-body">
-            <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
-            <p><b>Email:</b> {{ contact.email }}</p>
-            <p><b>LinkedIn: </b>{{ contact.linkedin }}</p>
-            <p><b>GitHub:</b> {{ contact.github }}</p>
-            <p><b>Portfolio:</b> {{ contact.portfolio }}</p>
-            <p><b>Location:</b> {{ contact.location }}</p>
-            <p><b>Job Title:</b> {{ contact.job_title }}</p>
+  <div class="">
+    <h2 class="heading-primary"> Contact Information </h2>
+  </div>
+
+  <!-- Contact Card -->
+  {% for contact in contacts %}
+    <div class="">
+      <div class="">
+        <div class="card-body">
+          <h2>{{ contact.first_name }} {{ contact.last_name }}</h2>
+          <p><b>Email:</b> {{ contact.email }}</p>
+          <p><b>LinkedIn: </b>{{ contact.linkedin }}</p>
+          <p><b>GitHub:</b> {{ contact.github }}</p>
+          <p><b>Portfolio:</b> {{ contact.portfolio }}</p>
+          <p><b>Location:</b> {{ contact.location }}</p>
+          <p><b>Job Title:</b> {{ contact.job_title }}</p>
+          {% if contact.user.id == user.id %}
             <a href="{% url 'contacts_update' contact.id %}">Edit</a>
             <a href="{% url 'contacts_delete' contact.id %}">Delete</a>
-          </div>
-        </div>
-    </div>
-    {% endfor %}
-
-    <!-- Add Contact Form -->
-    <div class="col-md-6 col-lg-4">
-      <div class="card my-3">        
-        <div class="card-body">
-          <form action="{% url 'contacts_create' %}" method="POST">
-            {% csrf_token %}
-            {{ contacts_form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Add Contact">
-          </form>
+          {% endif %}
         </div>
       </div>
-    </div>  
+  </div>
+  {% endfor %}
 
 </div>
+
+    <!-- Add Contact Form -->
+
+     
+<div class="form-box">
+  <form class="form--new" action="{% url 'contacts_create' %}" method="POST">
+    {% csrf_token %}
+    {{ contacts_form.as_p }}
+    <input type="submit" class="btn btn-primary btn-grid" value="Add Contact">
+  </form>
+</div>
+
+  
+
 
 
 

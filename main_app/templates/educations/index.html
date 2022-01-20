@@ -19,8 +19,10 @@
       <p>Degree: {{ education.degree }}:{{ education.degree_description }}</p>
       <p>Graduation: {{ education.graduation }}</p>
       <p>Location: {{ education.location }}</p>
-      <a href="{% url 'educations_update' education.id %}" class="link-primary">Edit</a>
-      <a href="{% url 'educations_delete' education.id %}" class="link-danger">Delete</a>
+      {% if education.user.id == user.id %}
+        <a href="{% url 'educations_update' education.id %}" class="link-primary">Edit</a>
+        <a href="{% url 'educations_delete' education.id %}" class="link-danger">Delete</a>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
