@@ -1,93 +1,86 @@
 {% extends 'base.html' %}
-{% block content%}
-<div class="">
+{% block content %}
+<div class="main--container">
 
 
-  <div class="">
-    <div class="-content">
-      {% for skill in skills %}
-      <span class="-title">{{ skill.name }}</span>
+  <h3>{{ resume.name }}</h3>
+  <a href="{% url 'resumes_print' resume.id %}">Print</a>
+
+<!-- Not Associated Skills -->
+  {% for skill in skills %}
+    <div class="">
+      <p class="-title">{{ skill.name }}</p>
       <p>Type: {{ skill.type }}</p>
-      <input type="checkbox" name="skills" value="{{ skill.name }}">
-      <label for=""></label><br>
     </div>
-    <div class="-action">
+    <div class="">
       <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
         {% csrf_token %}
         <button class="btn btn-primary" Type="submit"> ADD</button>
       </form>
     </div>
-  </div>
   {% endfor %}
-</div>
 
-<div class="">
-  <div class="-content">
-    {% for contact in contacts %}
-    <span class="-title">{{ contact.first_name }}</span>
-    <p>Type: {{ contact.last_name }}</p>
-    <input type="checkbox" name="" value="{{ contact.name }}">
-    <label for=""></label><br>
-  </div>
-  <div class="-action">
-    <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
-      {% csrf_token %}
+
+  <!-- Not Associated Contacts -->
+
+  {% for contact in contacts %}
+    <div class="">
+      <p class="-title">{{ contact.first_name }}</p>
+      <p>Type: {{ contact.last_name }}</p>
+    </div>
+    <div class="">
+      <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
+        {% csrf_token %}
       <button class="btn btn-primary" Type="submit"> ADD</button>
-    </form>
-  </div>
-</div>
-{% endfor %}
-</div>
+      </form>
+    </div>
+  {% endfor %}
 
 
-<div class="">
-  <h3>{{ resume.name }}</h3>
-  <a href="{% url 'resumes_print' resume.id %}">Print</a>
-  {% if resume.skills.count %}
-    {% for skill in resume.skills.all %}
-      <div class="">
-        <div class="-content">
-          <span class="-title">
+
+
+
+    <!-- Dissplay Added Skills -->
+    {% if resume.skills.count %}
+      {% for skill in resume.skills.all %}
+        <div class="">
+          <p class="-title">
             {{ skill.name }}
             {{ skill.get_type_display }}
-          </span>
+          </p>
         </div>
-      <div class="-action">
+        <div class="">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+            </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Skills</h5>
+    {% endif %}
+
+
+
+  <!-- Display Added Contacts -->
+  {% if resume.contact.count %}
+    {% for contact in resume.contact.all %}
+      <div class="">
+        <p class="">
+          {{ contact.first_name }}
+          {{ contact.last_name }}
+        </p>
+      </div>
+      <div class="">
           <form action="" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-sm">Remove</button>
           </form>
-        </div>
       </div>
     {% endfor %}
   {% else %}
-    <h5>No Skills</h5>
+   <h5>No Contacts</h5>
   {% endif %}
-</div>
-
-{% if resume.contacts.count %}
-{% for contact in resume.contacts.all %}
-  <div class="">
-    <div class="">
-      <span class="card-title">
-        {{ contact.first_name }}
-        {{ contact.last_name }}
-      </span>
-    </div>
-  <div class="card-action">
-      <form action="" method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-warning btn-sm">Remove</button>
-      </form>
-    </div>
-  </div>
-{% endfor %}
-{% else %}
-<h5>No Contacts</h5>
-{% endif %}
-</div>
-
-
 
 
 
