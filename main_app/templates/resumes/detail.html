@@ -21,7 +21,7 @@
                 <p class="card-text--title">{{ contact.first_name }} {{ contact.last_name }}</p>
                 <p class="">{{ contact.job_title }}</p>
                 {% if resume.contacts.count == 1 %}
-
+                <!-- Restricting access to button if Contact has already been added -->
                 {% else %}
                 <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
                   {% csrf_token %}
