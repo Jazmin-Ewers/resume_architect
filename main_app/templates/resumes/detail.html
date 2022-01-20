@@ -11,8 +11,7 @@
   <!-- Not Associated Contacts -->
   {% for contact in contacts %}
     <div class="">
-      <p class="-title">{{ contact.first_name }}</p>
-      <p>Type: {{ contact.last_name }}</p>
+      <p class="-title">{{ contact.first_name }} {{ contact.last_name }}</p>
     </div>
     <div class="">
       <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
@@ -45,7 +44,7 @@
 {% for project in projects %}
   <div class="">
     <p class="-title">{{ project.name }}</p>
-    <p>Type: {{ project.date }}</p>
+    <p>Date: {{ project.date }}</p>
   </div>
   <div class="">
     <form action="{% url 'assoc_project' resume.id project.id %}" method="POST">
@@ -99,7 +98,7 @@
         </p>
       </div>
       <div class="">
-          <form action="" method="POST">
+          <form action="{% url 'unassoc_contact' resume.id contact.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-sm">Remove</button>
           </form>
@@ -119,7 +118,7 @@
         </p>
       </div>
       <div class="">
-          <form action="" method="POST">
+          <form action="{% url 'unassoc_project' resume.id project.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-sm">Remove</button>
           </form>
@@ -140,7 +139,7 @@
           </p>
         </div>
         <div class="">
-            <form action="" method="POST">
+            <form action="{% url 'unassoc_skill' resume.id skill.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning btn-sm">Remove</button>
             </form>
@@ -160,7 +159,7 @@
             <p>Dates: {{ experience.start_date }} - {{ experience.end_date }}</p>
         </div>
         <div class="">
-            <form action="" method="POST">
+            <form action="{% url 'unassoc_experience' resume.id experience.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn btn-warning btn-sm">Remove</button>
             </form>
@@ -183,7 +182,7 @@
         </p>
       </div>
       <div class="">
-          <form action="" method="POST">
+          <form action="{% url 'unassoc_education' resume.id education.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-sm">Remove</button>
           </form>

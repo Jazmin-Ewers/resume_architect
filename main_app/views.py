@@ -133,9 +133,19 @@ def assoc_skill(request, resume_id, skill_id):
   return redirect('resumes_detail', resume_id=resume_id)
 
 @login_required
+def unassoc_skill(request, resume_id, skill_id):
+  Resume.objects.get(id=resume_id).skills.remove(skill_id)
+  return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
 def assoc_contact(request, resume_id, contact_id):
   resume=Resume.objects.get(id=resume_id)
   resume.contacts.add(contact_id)
+  return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
+def unassoc_contact(request, resume_id, contact_id):
+  Resume.objects.get(id=resume_id).contacts.remove(contact_id)
   return redirect('resumes_detail', resume_id=resume_id)
 
 @login_required
@@ -145,9 +155,19 @@ def assoc_education(request, resume_id, education_id):
   return redirect('resumes_detail', resume_id=resume_id)
 
 @login_required
+def unassoc_education(request, resume_id, education_id):
+  Resume.objects.get(id=resume_id).educations.remove(education_id)
+  return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
 def assoc_project(request, resume_id, project_id):
   resume=Resume.objects.get(id=resume_id)
   resume.projects.add(project_id)
+  return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
+def unassoc_project(request, resume_id, project_id):
+  Resume.objects.get(id=resume_id).projects.remove(project_id)
   return redirect('resumes_detail', resume_id=resume_id)
 
 @login_required
@@ -156,6 +176,10 @@ def assoc_experience(request, resume_id, experience_id):
   resume.experiences.add(experience_id)
   return redirect('resumes_detail', resume_id=resume_id)
 
+@login_required
+def unassoc_experience(request, resume_id, experience_id):
+  Resume.objects.get(id=resume_id).experiences.remove(experience_id)
+  return redirect('resumes_detail', resume_id=resume_id)
 
 
 @login_required
