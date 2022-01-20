@@ -116,96 +116,118 @@
       {% endif %}
     </section>
 
-
-
-
-
-    <!-- Display Added Projects -->
-    {% if resume.projects.count %}
-      {% for project in resume.projects.all %}
-        <div class="">
-          <p class="">
-            {{ project.name }}
-            {{ project.date }}
-          </p>
-        </div>
-        <div class="">
-            <form action="{% url 'unassoc_project' resume.id project.id %}" method="POST">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-warning btn-sm">Remove</button>
-            </form>
-        </div>
-      {% endfor %}
-    {% else %}
-    <h5>No projects</h5>
-    {% endif %}
-
-
-      <!-- Display Added Skills -->
+    <!-- Display Added Skills -->
+    <section class="section-assoc">
       {% if resume.skills.count %}
+        <table>
+          <tr>
+            <th>Skills</th>
+            <th></th>
+          </tr>
         {% for skill in resume.skills.all %}
-          <div class="">
-            <p class="-title">
-              {{ skill.name }}
-              {{ skill.get_type_display }}
-            </p>
-          </div>
-          <div class="">
+          <tr>
+            <td>{{ skill.name }}</td>
+            <td>
               <form action="{% url 'unassoc_skill' resume.id skill.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-warning btn-sm">Remove</button>
               </form>
-          </div>
+            </td>  
+          </tr>
         {% endfor %}
+        </table>
       {% else %}
         <h5>No Skills</h5>
       {% endif %}
+    </section>
 
-      <!-- Display Added Experiences -->
+    <!-- Display Added Projects -->
+    <section class="section-assoc">
+      {% if resume.projects.count %}
+        <table>
+            <tr>
+              <th>Projects</th>
+              <th></th>
+              <th></th>  
+            </tr>
+          {% for project in resume.projects.all %}
+            <tr>
+              <td>{{ project.name }}</td>
+              <td>{{ project.date }}</td>    
+              <td>
+                <form action="{% url 'unassoc_project' resume.id project.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+                </form>
+              </td>   
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <h5>No projects</h5>
+      {% endif %}
+    </section>
+
+
+
+
+    <!-- Display Added Experiences -->
+    <section class="section-assoc">
       {% if resume.experiences.count %}
+      <table>
+        <tr>
+          <th>Experience</th>
+          <th>Title</th>
+          <th></th>
+        </tr>
         {% for experience in resume.experiences.all %}
-          <div class="">
-            <p class="-title">
-              {{ experience.workplace }}
-            </p>
-              <p>Dates: {{ experience.start_date }} - {{ experience.end_date }}</p>
-          </div>
-          <div class="">
+          <tr>
+            <td>{{ experience.workplace }}</td>
+            <td>Job Title Here</td>
+            <td>
               <form action="{% url 'unassoc_experience' resume.id experience.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-warning btn-sm">Remove</button>
               </form>
-          </div>
+            </td>
+          </tr>
         {% endfor %}
+      </table>
       {% else %}
         <h5>No experiences</h5>
       {% endif %}
-
+    </section>
 
 
 
     <!-- Display Added Educations -->
-    {% if resume.educations.count %}
-      {% for education in resume.educations.all %}
-        <div class="">
-          <p class="">
-            {{ education.institution }}
-            {{ education.get_degree_display }}
-          </p>
-        </div>
-        <div class="">
-            <form action="{% url 'unassoc_education' resume.id education.id %}" method="POST">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-warning btn-sm">Remove</button>
-            </form>
-        </div>
-      {% endfor %}
-    {% else %}
-    <h5>No Educations</h5>
-    {% endif %}
+    <section class="section-assoc">
+      {% if resume.educations.count %}
+      <table>
+        <tr>
+          <th>Education</th>
+          <th>Description</th>
+          <th></th>  
+        </tr>
+          {% for education in resume.educations.all %}
+            <tr>
+              <td>{{ education.institution }}</td>            
+              <td>{{ education.description }}</td>
+              <td>
+                <form action="{% url 'unassoc_education' resume.id education.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <h5>No Education</h5>
+      {% endif %}
+    </section>
 
   </div>
-
 
 </div>
 
