@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import EducationForm, ContactForm, ResumeForm, SkillForm, ExperienceForm
+from .forms import EducationForm, ContactForm, ResumeForm, SkillForm, ExperienceForm, ProjectForm
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -83,7 +83,7 @@ def resumes_index(request):
 def resumes_detail(request, resume_id):
   resume = Resume.objects.filter(user=request.user).get(id=resume_id)
   contacts = Contact.objects.filter(user=request.user)
-  projects = Projects.objects.filter(user=request.user)
+  projects = Project.objects.filter(user=request.user)
   experiences = Experience.objects.filter(user=request.user)
   educations = Education.objects.filter(user=request.user)
   resume_form = ResumeForm()
@@ -212,3 +212,31 @@ class ExperienceUpdate(LoginRequiredMixin, UpdateView):
 class ExperienceDelete(LoginRequiredMixin, DeleteView):
   model = Experience
   success_url = '/experiences/'
+
+
+
+
+@login_required
+def projects_index(request):
+  projects = Project.objects.filter(user=request.user)
+  projects_form = ProjectForm()
+  return render(request, 'projects/index.html', {
+    'projects': projects,
+    'projects_form': projects_form
+  })
+
+class ProjectCreate(LoginRequiredMixin, CreateView):
+  model = Project
+  fields = ['name', 'locations', 'date', 'technologies', 'description']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
+  model = Project
+  fields = ['name', 'locations', 'date', 'technologies', 'description']
+
+class ProjectDelete(LoginRequiredMixin, DeleteView):
+  model = Project
+  success_url = '/projects/'

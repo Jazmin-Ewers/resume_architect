@@ -82,20 +82,26 @@ class Education(models.Model):
     def get_absolute_url(self):
         return reverse('educations_index')      
 
-class Projects(models.Model):
-    project_name = models.CharField(max_length= 200)
+class Project(models.Model):
+    name = models.CharField(max_length= 200)
     locations = models.CharField(max_length= 200)
-    project_date = models.DateField('Project Date')
+    date = models.DateField('Project Date')
     technologies = models.TextField(max_length = 800)
-    project_description = models.TextField(max_length = 2000)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)    
+    description = models.TextField(max_length = 2000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('projects_index')    
 
 class Resume(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateField(default=datetime.now())
     contact = models.ManyToManyField(Contact)
     skills = models.ManyToManyField(Skill)
-    projects = models.ManyToManyField(Projects)
+    projects = models.ManyToManyField(Project)
     experience = models.ManyToManyField(Experience)
     education = models.ManyToManyField(Education)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
