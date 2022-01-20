@@ -36,7 +36,7 @@ def signup(request):
 def skills_index(request):
   # Filter skills once user model has been connected to Skill model
   # skill = Skill.objects.filter(user=request.user)
-  skills = Skill.objects.all()
+  skills = Skill.objects.filter(user=request.user)
   skills_form = SkillForm()
   return render(request, 'skills/index.html', {
     'skills': skills,
@@ -45,7 +45,7 @@ def skills_index(request):
 
 class SkillCreate(LoginRequiredMixin, CreateView):
   model = Skill
-  fields = '__all__'
+  fields = ['name', 'type', 'description']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -53,7 +53,7 @@ class SkillCreate(LoginRequiredMixin, CreateView):
 
 class SkillUpdate(LoginRequiredMixin, UpdateView):
   model = Skill
-  fields = '__all__'
+  fields = ['name', 'type', 'description']
 
 class  SkillDelete(LoginRequiredMixin, DeleteView):
   model = Skill
@@ -62,6 +62,10 @@ class  SkillDelete(LoginRequiredMixin, DeleteView):
 class ResumeCreate(LoginRequiredMixin, CreateView):
   model = Resume
   fields = ['name', 'date']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 # def resume_create(request):
 #   contacts = Contact.objects.all()
@@ -72,17 +76,16 @@ class ResumeCreate(LoginRequiredMixin, CreateView):
 
 @login_required
 def resumes_index(request):
-  resumes = Resume.objects.all()
+  resumes = Resume.objects.filter(user=request.user)
   return render(request, 'resumes/index.html', {'resumes': resumes})
 
 @login_required
 def resumes_detail(request, resume_id):
-  resume = Resume.objects.get(id=resume_id)
-  skills = Skill.objects.all()
-  contacts = Contact.objects.all()
-  projects = Projects.objects.all()
-  experiences = Experience.objects.all()
-  educations = Education.objects.all()
+  resume = Resume.objects.filter(user=request.user).get(id=resume_id)
+  contacts = Contact.objects.filter(user=request.user)
+  projects = Projects.objects.filter(user=request.user)
+  experiences = Experience.objects.filter(user=request.user)
+  educations = Education.objects.filter(user=request.user)
   resume_form = ResumeForm()
   skills_resume_doesnt_have = Skill.objects.exclude(id__in=resume.skills.all().values_list('id'))
   return render(request, 'resumes/detail.html',  {
@@ -127,7 +130,7 @@ def assoc_skill(request, resume_id, skill_id):
 
 @login_required
 def educations_index(request):
-  educations = Education.objects.all()
+  educations = Education.objects.filter(user=request.user)
   educations_form = EducationForm()
   return render(request, 'educations/index.html', {
     'educations': educations,
@@ -136,11 +139,15 @@ def educations_index(request):
 
 class EducationCreate(LoginRequiredMixin, CreateView):
   model= Education
-  fields= '__all__'
+  fields= ['institution', 'graduation', 'location', 'degree', 'degree_description']
+ 
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class EducationUpdate(LoginRequiredMixin, UpdateView):
   model = Education
-  fields = '__all__'
+  fields= ['institution', 'graduation', 'location', 'degree', 'degree_description']
 
 class EducationDelete(LoginRequiredMixin, DeleteView):
   model = Education
@@ -148,12 +155,13 @@ class EducationDelete(LoginRequiredMixin, DeleteView):
 
 @login_required  
 def contacts_index(request):
-  contacts = Contact.objects.all()
+  contacts = Contact.objects.filter(user=request.user)
   contacts_form = ContactForm()
   return render(request, 'contacts/index.html', {
     'contacts': contacts,
     'contacts_form': contacts_form
   })
+  
 
 # def contacts_create(request):
 #   if request.method == 'POST':
@@ -165,12 +173,16 @@ def contacts_index(request):
 #     return redirect('contacts_index')
 
 class ContactCreate(LoginRequiredMixin, CreateView):
-  model= Contact
-  fields= '__all__'
+  model = Contact
+  fields = ['first_name', 'last_name', 'email', 'linkedin', 'github', 'portfolio', 'location', 'job_title']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class ContactUpdate(LoginRequiredMixin, UpdateView):
   model = Contact
-  fields = '__all__'
+  fields = ['first_name', 'last_name', 'email', 'linkedin', 'github', 'portfolio', 'location', 'job_title']
 
 class ContactDelete(LoginRequiredMixin, DeleteView):
   model = Contact
@@ -178,7 +190,7 @@ class ContactDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def experiences_index(request):
-  experiences = Experience.objects.all()
+  experiences = Experience.objects.filter(user=request.user)
   experiences_form = ExperienceForm()
   return render(request, 'experiences/index.html', {
     'experiences': experiences,
@@ -187,11 +199,15 @@ def experiences_index(request):
 
 class ExperienceCreate(LoginRequiredMixin, CreateView):
   model = Experience
-  fields = '__all__'
+  fields = ['workplace', 'location', 'start_date', 'end_date', 'description']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class ExperienceUpdate(LoginRequiredMixin, UpdateView):
   model = Experience
-  fields = '__all__'
+  fields = ['workplace', 'location', 'start_date', 'end_date', 'description']
 
 class ExperienceDelete(LoginRequiredMixin, DeleteView):
   model = Experience
