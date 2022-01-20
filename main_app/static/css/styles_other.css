@@ -44,6 +44,11 @@
   font-size: 16px;
 }
 
+.form--new select,
+.form--edit {
+  width: 180px;
+}
+
 .form-box {
   min-width: 320px;
   max-width: 390px;
@@ -62,6 +67,7 @@
   width: 360px;
   box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
   border-radius: 11px;
+  overflow: hidden;
   transition: all 0.4s;
 }
 
