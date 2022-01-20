@@ -26,17 +26,13 @@
     </div>
 {% endfor %}
 
-  
-<a href="{% url 'resumes_create' %}" class="btn btn-primary">Add Resume</a>
 
 <!-- Resume Form -->
 <div class="form-box">
   <h2 class="heading-secondary">Add New Resume</h2>
-  <form class="form--new" action="" method="POST">
+  <form class="form--new" action="{% url 'resumes_create' %}" method="POST">
     {% csrf_token %}
-    <table>
-      {{form.as_p}}
-  </table>
+    {{resume_form.as_p}}
   <input type="submit" value="Submit" class="btn btn-primary">
 </form>
 </div>
