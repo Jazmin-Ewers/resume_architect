@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="main--container">
+<div class="">
 
 
   <h3>{{ resume.name }}</h3>
   <a href="{% url 'resumes_print' resume.id %}">Print</a>
 
 <!-- Not Associated Skills -->
+<h4> Not Associated</h4>
   {% for skill in skills %}
     <div class="">
       <p class="-title">{{ skill.name }}</p>
@@ -20,6 +21,21 @@
     </div>
   {% endfor %}
 
+
+  <!-- Not Associated Educations -->
+
+  {% for education in educations %}
+    <div class="">
+      <p class="-title">{{ education.institution }}</p>
+      <p>Type: {{ education.get_degree_display }}</p>
+    </div>
+    <div class="">
+      <form action="{% url 'assoc_education' resume.id education.id %}" method="POST">
+        {% csrf_token %}
+      <button class="btn btn-primary" Type="submit"> ADD</button>
+      </form>
+    </div>
+  {% endfor %}
 
   <!-- Not Associated Contacts -->
 
@@ -36,11 +52,8 @@
     </div>
   {% endfor %}
 
-
-
-
-
-    <!-- Dissplay Added Skills -->
+    <!-- Display Added Skills -->
+    <h4> Added to Resume </h4>
     {% if resume.skills.count %}
       {% for skill in resume.skills.all %}
         <div class="">
@@ -80,6 +93,27 @@
     {% endfor %}
   {% else %}
    <h5>No Contacts</h5>
+  {% endif %}
+
+
+  <!-- Display Added Educations -->
+  {% if resume.education.count %}
+    {% for education in resume.education.all %}
+      <div class="">
+        <p class="">
+          {{ education.institution }}
+          {{ education.get_degree_display }}
+        </p>
+      </div>
+      <div class="">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+          </form>
+      </div>
+    {% endfor %}
+  {% else %}
+   <h5>No Educations</h5>
   {% endif %}
 
 

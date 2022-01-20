@@ -99,11 +99,11 @@ class Project(models.Model):
 class Resume(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateField(default=datetime.now())
-    contact = models.ManyToManyField(Contact)
+    contacts = models.ManyToManyField(Contact)
     skills = models.ManyToManyField(Skill)
     projects = models.ManyToManyField(Project)
-    experience = models.ManyToManyField(Experience)
-    education = models.ManyToManyField(Education)
+    experiences = models.ManyToManyField(Experience)
+    educations = models.ManyToManyField(Education)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):

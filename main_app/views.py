@@ -136,7 +136,13 @@ def assoc_skill(request, resume_id, skill_id):
 def assoc_contact(request, resume_id, contact_id):
   resume=Resume.objects.get(id=resume_id)
   resume.contact.add(contact_id)
-  return redirect('resumes_detail', resume_id=resume_id)   
+  return redirect('resumes_detail', resume_id=resume_id)
+
+@login_required
+def assoc_education(request, resume_id, education_id):
+  resume=Resume.objects.get(id=resume_id)
+  resume.education.add(education_id)
+  return redirect('resumes_detail', resume_id=resume_id)
 
 @login_required
 def educations_index(request):
