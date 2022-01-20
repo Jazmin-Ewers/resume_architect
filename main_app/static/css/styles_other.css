@@ -145,7 +145,6 @@
   border-radius: 11px;
   overflow: hidden;
   transition: all 0.4s;
-  background-color: aqua;
   display: flex;
   flex-wrap: wrap;
 }
@@ -158,4 +157,8 @@
 
 .resume-card-body {
   padding: 8px;
+}
+
+.section-assoc table tr td:last-child {
+  text-align: right;
 }

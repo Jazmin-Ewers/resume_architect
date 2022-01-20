@@ -13,6 +13,7 @@
       <!-- Not Associated Contacts -->
       <section class="section-notassoc">
         <h4>Contacts</h4>
+        {% if contacts.count %}
         <div class="resume-card-container">
           {% for contact in contacts %}
             <div class="resume-card-box">
@@ -27,12 +28,16 @@
             </div>
           {% endfor %}
         </div>
+        {% else %}
+          <p>All of your contacts have been added.</p>
+        {% endif %}
       </section>
 
 
       <!-- Not Associated Skills -->
       <section class="section-notassoc">
         <h4>Skills</h4>
+        {% if skills.count %}
         <div class="resume-card-container">
           {% for skill in skills %}
             <div class="resume-card-box">
@@ -46,12 +51,16 @@
             </div>
           {% endfor %}
         </div>
+          {% else %}
+            <p>All of your skills have been added.</p>
+          {% endif %}
       </section>
 
 
       <!-- Not Associated Projects -->
       <section class="section-notassoc">
         <h4>Projects</h4>
+        {% if projects.count %}
         <div class="resume-card-container">
           {% for project in projects %}
             <div class="resume-card-box">
@@ -65,11 +74,15 @@
             </div>
           {% endfor %}
         </div>
+        {% else %}
+          <p>All of your projects have been added.</p>
+        {% endif %}
       </section>
 
       <!-- Not Associated Experiences -->
       <section class="section-notassoc">
         <h4>Experience</h4>
+        {% if experiences.count %}
         <div class="resume-card-container">
           {% for experience in experiences %}
             <div class="resume-card-box">
@@ -83,11 +96,15 @@
             </div>
           {% endfor %}
         </div>
+        {% else %}
+          <p>All of your experiences have been added.</p>
+        {% endif %}
       </section>
 
       <!-- Not Associated Educations -->
       <section class="section-notassoc">
         <h4>Education</h4>
+        {% if educations.count %}
         <div class="resume-card-container">
           {% for education in educations %}
             <div class="resume-card-box">
@@ -102,6 +119,9 @@
             </div>
           {% endfor %}
         </div>
+        {% else %}
+          <p>All of your education have been added.</p>
+        {% endif %}
       </section>
   </div>
 
@@ -113,14 +133,16 @@
     <!-- Display Added Contacts -->
     <section class="section-assoc">
       {% if resume.contacts.count %}
-        <table>
+        <table class="table">
             <tr>
               <th>Contacts</th>
+              <th></th>
               <th></th>
             </tr>
           {% for contact in resume.contacts.all %}
             <tr>
               <td>{{ contact.first_name }} {{ contact.last_name }}</td>
+              <td></td>
               <td>
                 <form action="{% url 'unassoc_contact' resume.id contact.id %}" method="POST">
                   {% csrf_token %}
@@ -138,14 +160,16 @@
     <!-- Display Added Skills -->
     <section class="section-assoc">
       {% if resume.skills.count %}
-        <table>
+        <table class="table">
           <tr>
             <th>Skills</th>
+            <th></th>
             <th></th>
           </tr>
         {% for skill in resume.skills.all %}
           <tr>
             <td>{{ skill.name }}</td>
+            <td></td>
             <td>
               <form action="{% url 'unassoc_skill' resume.id skill.id %}" method="POST">
                 {% csrf_token %}
@@ -163,7 +187,7 @@
     <!-- Display Added Projects -->
     <section class="section-assoc">
       {% if resume.projects.count %}
-        <table>
+        <table class="table">
             <tr>
               <th>Projects</th>
               <th></th>
@@ -193,7 +217,7 @@
     <!-- Display Added Experiences -->
     <section class="section-assoc">
       {% if resume.experiences.count %}
-      <table>
+      <table class="table">
         <tr>
           <th>Experience</th>
           <th>Title</th>
@@ -222,7 +246,7 @@
     <!-- Display Added Educations -->
     <section class="section-assoc">
       {% if resume.educations.count %}
-      <table>
+      <table class="table">
         <tr>
           <th>Education</th>
           <th>Description</th>
