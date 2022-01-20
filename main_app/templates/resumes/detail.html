@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% block content%}
-<div>
+<div class="">
 
 
-  <div class="card">
-    <div class="card-content">
+  <div class="">
+    <div class="-content">
       {% for skill in skills %}
-      <span class="card-title">{{ skill.name }}</span>
+      <span class="-title">{{ skill.name }}</span>
       <p>Type: {{ skill.type }}</p>
       <input type="checkbox" name="skills" value="{{ skill.name }}">
       <label for=""></label><br>
     </div>
-    <div class="card-action">
+    <div class="-action">
       <form action="{% url 'assoc_skill' resume.id skill.id %}" method="POST">
         {% csrf_token %}
         <button class="btn btn-primary" Type="submit"> ADD</button>
@@ -21,19 +21,38 @@
   {% endfor %}
 </div>
 
-<div class="col s6">
+<div class="">
+  <div class="-content">
+    {% for contact in contacts %}
+    <span class="-title">{{ contact.first_name }}</span>
+    <p>Type: {{ contact.last_name }}</p>
+    <input type="checkbox" name="" value="{{ contact.name }}">
+    <label for=""></label><br>
+  </div>
+  <div class="-action">
+    <form action="{% url 'assoc_contact' resume.id contact.id %}" method="POST">
+      {% csrf_token %}
+      <button class="btn btn-primary" Type="submit"> ADD</button>
+    </form>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+<div class="">
   <h3>{{ resume.name }}</h3>
   <a href="{% url 'resumes_print' resume.id %}">Print</a>
   {% if resume.skills.count %}
     {% for skill in resume.skills.all %}
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">
+      <div class="">
+        <div class="-content">
+          <span class="-title">
             {{ skill.name }}
             {{ skill.get_type_display }}
           </span>
         </div>
-        <div class="card-action">
+      <div class="-action">
           <form action="" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning btn-sm">Remove</button>
@@ -46,7 +65,27 @@
   {% endif %}
 </div>
 
-
+{% if resume.contacts.count %}
+{% for contact in resume.contacts.all %}
+  <div class="">
+    <div class="">
+      <span class="card-title">
+        {{ contact.first_name }}
+        {{ contact.last_name }}
+      </span>
+    </div>
+  <div class="card-action">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning btn-sm">Remove</button>
+      </form>
+    </div>
+  </div>
+{% endfor %}
+{% else %}
+<h5>No Contacts</h5>
+{% endif %}
+</div>
 
 
 
