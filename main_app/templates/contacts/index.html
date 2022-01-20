@@ -2,8 +2,8 @@
 {% block content %}
 
 
-<h2 class="heading-primary"> Contact Information </h2>
 
+<h2 class="heading-primary"> Contact Information </h2>
 
 <div class="main--container">
 
@@ -11,8 +11,8 @@
   {% for contact in contacts %}
 
     <div class="card-box">
-      <h2 class="heading-secondary">{{ contact.first_name }} {{ contact.last_name }}</h2>
       <div class="card-body">
+        <h2 class="heading-secondary">{{ contact.first_name }} {{ contact.last_name }}</h2>
         <div class="card-text">
           <p class="card-text--title">Title:</p> 
           <p class="card-text--detail">{{ contact.job_title }}</p>
