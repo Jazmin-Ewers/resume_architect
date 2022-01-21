@@ -27,7 +27,7 @@ Screen Shots of the App
 ### Resume Print
 >Once users have added relevant skills and experiences to their resume detail they can click the print link to see thier formatted resume template.
 
-<img src = "">
+![Imgur](https://i.imgur.com/RgaPmWZ.png) 
 
 ## Technology Used:
  * HTML
