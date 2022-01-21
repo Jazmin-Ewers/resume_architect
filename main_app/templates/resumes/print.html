@@ -175,26 +175,6 @@
 
                       {% endfor %}
                     {% endif %}
-
-
-
-<!-- 
-
-                    {% for contact in contacts %}
-										<h1>{{ contact.first_name}} {{ contact.last_name}}</h1>
-										<h2>{{ contact.job_title}}</h2>
-                    <h3>{{ contact.location }}</h3>
-                    
-									</div>
-
-									<div class="yui-u">
-										<div class="contact-info">
-											<h3><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></h3>
-											<h3><a href="{{ contact.linkedin }}">LinkedIn</a></h3>
-											<h3><a href="{{ contact.github }}">Github</a></h3>
-											<h3><a href="{{ contact.portfolio }}">Portfolio</a></h3>
-
-                      {% endfor %} -->
 										</div><!--// .contact-info -->
                   </div>
 								</div><!--// .yui-gc -->
@@ -231,6 +211,20 @@
 
 										<div class="yui-gf">
 											<div class="yui-u first">
+                        {% if skills.count == 0 %}
+                        <h2>Skills</h2>
+											</div>
+											<div class="yui-u">
+                        <h4><b>Language: &nbsp;</b>
+                          <span>HTML, CSS, Javascript</span>
+                        </h4>
+                        <h4><b>Framework: &nbsp;</b>
+                          <span>Django, Node.js, React, Express.js, AngularJS</span>
+                        </h4>    
+                        <h4><b>Database &nbsp;</b>
+                          <span>Postgre SQL,  MongoDB, Mongoose</span>
+                        </h4>  
+                        {% else %}
 												<h2>Skills</h2>
 											</div>
 											<div class="yui-u">
@@ -261,7 +255,7 @@
                             {% endfor %}
                           </span>
                         </h4>  
-
+                        {% endif %}
 
 												<!-- <ul class="talent">
 														{% for skill in skills %}     
