@@ -12,17 +12,18 @@ Screen Shots of the App
 ### Home Page
 >Signup or login from the home page.
 
-<img src = "">
+![Imgur](https://i.imgur.com/Wp0Q3SF.png)
 
 ### Updating User Modules
 >Once logged in, from the side bar users can select from a variety of modules related to a resume module to create, edit and update.
 
-<img src = "">
+![Imgur](https://i.imgur.com/sQf4aaE.png)
+
 
 ### Resume Create
 >Once users have created their modules they can create a new resume and add skills, experiences, etc. to their new resume.
 
-<img src = "">
+![Imgur](https://i.imgur.com/DwNkfC5.png)
 
 ### Resume Print
 >Once users have added relevant skills and experiences to their resume detail they can click the print link to see thier formatted resume template.
