@@ -53,11 +53,12 @@ Screen Shots of the App
 
 ## Future Ice Box Items 
 * We would like to incorporate an API to convert the resume from the resume/print.html to a pdf file so users can save the file to their local computer.
+* Improve CSS and layout for better user experience and be more visually pleasing.
 * We would like to be able to separate project and experience descriptions by bullet point sections.
 * We would like to incorporate different template styles for users to select. 
 * We would like to be able to incorporate the LinkedIn Learning API so users  are incentivized to learn  new skills that they can add to their future resumes.
 * We would like to integrate into AWS so users can upload an image for a more personalized resume.
-* Improve CSS and layout for better user experience and be more visually pleasing.
+
 
 ## References
 * RESUME TEMPLATE HTML[Matt Brown](https://thingsthatarebrown.com/) HTML XHTML version 1.0 2010

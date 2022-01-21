@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+
   <div class="delete-container">
-
-    <h2 class="heading-secondary">Are you sure you want to delete this Education info?</h2>
-
+    <h2 class="heading-secondary">Are you sure you want to delete this resume?</h2>
     <form class="form--delete" action="" method="POST">
       {% csrf_token %}
-
       <div class="delete-links">
         <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
-        <a class="btn btn-danger form-btn" href="{% url 'educations_index' %}">Cancel</a>
-      </div>
+        <a class="btn btn-danger form-btn" href="{% url 'resumes_index' %}">Cancel</a>
+      </div> 
     </form>
-
   </div>
-  
+
 {% endblock %}

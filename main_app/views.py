@@ -35,7 +35,6 @@ def signup(request):
 @login_required
 def skills_index(request):
   # Filter skills once user model has been connected to Skill model
-  # skill = Skill.objects.filter(user=request.user)
   skills = Skill.objects.filter(user=request.user)
   skills_form = SkillForm()
   return render(request, 'skills/index.html', {
@@ -67,12 +66,13 @@ class ResumeCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-# def resume_create(request):
-#   contacts = Contact.objects.all()
-#   skills = Skill.objects.all()
-#   projects = Projects.objects.all()
-#   experiences = Experience.objects.all()
-#   educations = Education.objects.all()
+class ResumeUpdate(LoginRequiredMixin, UpdateView):
+  model = Resume
+  fields = ['name', 'date'] 
+
+class ResumeDelete(LoginRequiredMixin, DeleteView):
+  model = Resume  
+  success_url = '/resumes/'
 
 @login_required
 def resumes_index(request):
@@ -118,21 +118,6 @@ def resumes_print(request, resume_id):
     'experiences': experiences,
     'educations': educations,
     })  
-
-# def cats_detail(request, cat_id):
-#       cat = Cat.objects.get(id=cat_id)
-#       if cat.user == request.user:
-#     # instantiate FeedingForm to be rendered in the detail.html template
-#     feeding_form = FeedingForm()
-#     # find all toys not associated with this cat
-#     toys_cat_doesnt_have = Toy.objects.exclude(id__in=cat.toys.all().values_list('id'))
-#     return render(request, 'cats/detail.html', {
-#       'cat': cat,
-#       'feeding_form': feeding_form,
-#       'toys': toys_cat_doesnt_have
-#     })
-#   else:
-#     return redirect('cats_index')
 
 @login_required
 def assoc_skill(request, resume_id, skill_id):
@@ -189,7 +174,6 @@ def unassoc_experience(request, resume_id, experience_id):
   Resume.objects.get(id=resume_id).experiences.remove(experience_id)
   return redirect('resumes_detail', resume_id=resume_id)
 
-
 @login_required
 def educations_index(request):
   educations = Education.objects.filter(user=request.user)
@@ -224,16 +208,6 @@ def contacts_index(request):
     'contacts_form': contacts_form
   })
   
-
-# def contacts_create(request):
-#   if request.method == 'POST':
-#     form = ContactForm(request.POST)
-#     # Contact.objects.create(form)
-#     if form.is_valid():
-#       new_contact = form.save(commit=False)
-#       new_contact.save()
-#     return redirect('contacts_index')
-
 class ContactCreate(LoginRequiredMixin, CreateView):
   model = Contact
   fields = ['first_name', 'last_name', 'email', 'linkedin', 'github', 'portfolio', 'location', 'job_title']
@@ -249,12 +223,6 @@ class ContactUpdate(LoginRequiredMixin, UpdateView):
 class ContactDelete(LoginRequiredMixin, DeleteView):
   model = Contact
   success_url = '/contacts/'
-
-# @login_required
-# def assoc_contact(request, resume_id, contact_id):
-#   resume=Resume.objects.get(id=resume_id)
-#   resume.contact.add(contact_id)
-#   return redirect('resumes_detail', resume_id=resume_id)  
 
 @login_required
 def experiences_index(request):
@@ -280,9 +248,6 @@ class ExperienceUpdate(LoginRequiredMixin, UpdateView):
 class ExperienceDelete(LoginRequiredMixin, DeleteView):
   model = Experience
   success_url = '/experiences/'
-
-
-
 
 @login_required
 def projects_index(request):

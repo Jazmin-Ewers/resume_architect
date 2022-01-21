@@ -11,10 +11,14 @@ urlpatterns = [
   path('skills/<int:pk>/update/', views.SkillUpdate.as_view(), name='skills_update'),
   path('skills/<int:pk>/delete/', views.SkillDelete.as_view(), name='skills_delete'),
   
-  #Resume Paths
+  # Resume Paths
   path('resumes/', views.resumes_index, name='resumes_index'),
   path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),
+
+  path('resumes/<int:pk>/update/', views.ResumeUpdate.as_view(), name='resumes_update'),
+  path('resumes/<int:pk>/delete/', views.ResumeDelete.as_view(), name='resumes_delete'),
+
   path('resumes/<int:resume_id>/print', views.resumes_print, name='resumes_print'),
   path('resumes/<int:resume_id>/assoc_skill/<int:skill_id>/', views.assoc_skill, name='assoc_skill'),
   path('resumes/<int:resume_id>/unassoc_skill/<int:skill_id>/', views.unassoc_skill, name='unassoc_skill'),

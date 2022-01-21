@@ -1,15 +1,12 @@
 {% extends 'base.html'%}
 {% block content %}
 
-
-
 <h2 class="heading-primary"> Contact Information </h2>
 
 <div class="main--container">
 
   <!-- Contact Card -->
   {% for contact in contacts %}
-
     <div class="card-box">
       <div class="card-body">
         <h2 class="heading-secondary">{{ contact.first_name }} {{ contact.last_name }}</h2>
@@ -39,12 +36,12 @@
         </div>
 
         {% if contact.user.id == user.id %}
-
-        <div class="card-links">
-          <a class="link-primary" href="{% url 'contacts_update' contact.id %}">Edit</a>
-          <a class="link-danger" href="{% url 'contacts_delete' contact.id %}">Delete</a>
-        </div>
+          <div class="card-links">
+            <a class="link-primary" href="{% url 'contacts_update' contact.id %}">Edit</a>
+            <a class="link-danger" href="{% url 'contacts_delete' contact.id %}">Delete</a>
+          </div>
         {% endif %}
+        
       </div>
     </div>
 
