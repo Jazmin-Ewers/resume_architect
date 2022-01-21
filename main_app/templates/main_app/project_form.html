@@ -2,19 +2,18 @@
 
 {% block content %}
 
-<div class="main--container">
+  <div class="main--container">
 
-  <div class="form-box">
-    <h2 class="heading-secondary">Edit Project</h2>
-    <form class="form--edit" action="" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Submit" class="btn btn-primary form-btn">
-    </form>
+    <div class="form-box">
+      <h2 class="heading-secondary">Edit Project</h2>
+      <form class="form--edit" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-primary form-btn">
+      </form>
+    </div>
+
   </div>
-
-
-</div>
 
 
 {% endblock %}

@@ -11,7 +11,7 @@ urlpatterns = [
   path('skills/<int:pk>/update/', views.SkillUpdate.as_view(), name='skills_update'),
   path('skills/<int:pk>/delete/', views.SkillDelete.as_view(), name='skills_delete'),
   
-  #Resume Paths
+  # Resume Paths
   path('resumes/', views.resumes_index, name='resumes_index'),
   path('resumes/create/', views.ResumeCreate.as_view(), name='resumes_create'),
   path('resumes/<int:resume_id>/', views.resumes_detail, name='resumes_detail'),

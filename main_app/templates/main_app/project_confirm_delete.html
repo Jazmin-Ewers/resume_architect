@@ -6,12 +6,10 @@
     <h2 class="heading-secondary">Are you sure you want to delete this Project?</h2>
     <form class="form--delete" action="" method="POST">
       {% csrf_token %}
-
-      <div class="delete-links">
-        <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
-        <a class="btn btn-danger form-btn" href="{% url 'projects_index' %}">Cancel</a>
-      </div> 
-
+        <div class="delete-links">
+          <input type="submit" value="Yes - Delete!" class="btn btn-primary form-btn">
+          <a class="btn btn-danger form-btn" href="{% url 'projects_index' %}">Cancel</a>
+        </div> 
     </form>
   </div>
 
