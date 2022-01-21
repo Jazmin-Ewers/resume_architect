@@ -35,7 +35,6 @@ def signup(request):
 @login_required
 def skills_index(request):
   # Filter skills once user model has been connected to Skill model
-  # skill = Skill.objects.filter(user=request.user)
   skills = Skill.objects.filter(user=request.user)
   skills_form = SkillForm()
   return render(request, 'skills/index.html', {
@@ -66,6 +65,14 @@ class ResumeCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class ResumeUpdate(LoginRequiredMixin, UpdateView):
+  model = Resume
+  fields = ['name', 'date'] 
+
+class ResumeDelete(LoginRequiredMixin, DeleteView):
+  model = Resume  
+  success_url = '/resumes/'
 
 @login_required
 def resumes_index(request):

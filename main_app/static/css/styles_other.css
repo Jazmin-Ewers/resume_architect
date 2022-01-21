@@ -19,7 +19,7 @@
   flex: 0 1 0;
   flex-wrap: wrap;
   gap: 16px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 } 
 .delete-container {
@@ -161,4 +161,8 @@
 
 .section-assoc table tr td:last-child {
   text-align: right;
+}
+
+.card-box--sm {
+  width: 200px;
 }
